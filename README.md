@@ -11,7 +11,7 @@
  - Huber Grobelny
  - Maciej Jankowski
  - Krzysztof Prońko
- - Paweł Stępień
+ - [Paweł Stępień](https://github.com/pastepi)
 
 
 ### How to contribute
