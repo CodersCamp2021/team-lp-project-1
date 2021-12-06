@@ -1,18 +1,17 @@
 # CodersCamp 2021 - Team: Łukasz Powązka
-## Project 1: HTML & CSS & JavaScript
 
+## Project 1: HTML & CSS & JavaScript
 
 **Mentor**: [Łukasz Powązka](https://github.com/lukiq)
 
 **Team members**:
 
- - Patryk Brodziak
- - Jakub Czerwiński
- - Huber Grobelny
- - Maciej Jankowski
- - Krzysztof Prońko
- - [Paweł Stępień](https://github.com/pastepi)
-
+- Patryk Brodziak
+- Jakub Czerwiński
+- Huber Grobelny
+- Maciej Jankowski
+- Krzysztof Prońko
+- [Paweł Stępień](https://github.com/pastepi) - pastepi
 
 ### How to contribute
 
