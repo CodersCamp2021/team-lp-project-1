@@ -1,6 +1,6 @@
 # CodersCamp 2021 - Team: Łukasz Powązka
-## Project 1: HTML & CSS & JavaScript
 
+## Project 1: HTML & CSS & JavaScript
 
 **Mentor**: [Łukasz Powązka](https://github.com/lukiq)
 
