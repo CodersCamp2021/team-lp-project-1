@@ -6,13 +6,12 @@
 
 **Team members**:
 
- - [Patryk Brodziak](https://github.com/patrykbrodziak1)
- - Jakub Czerwiński
- - Huber Grobelny
- - Maciej Jankowski
- - Krzysztof Prońko
- - [Paweł Stępień](https://github.com/pastepi)
-
+- [Patryk Brodziak](https://github.com/patrykbrodziak1)
+- [Jakub Czerwiński](https://github.com/kubaczerwinski77)
+- Huber Grobelny
+- Maciej Jankowski
+- Krzysztof Prońko
+- [Paweł Stępień](https://github.com/pastepi)
 
 ### How to contribute
 
