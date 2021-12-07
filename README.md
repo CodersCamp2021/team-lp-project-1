@@ -9,7 +9,7 @@
  - [Patryk Brodziak](https://github.com/patrykbrodziak1)
  - Jakub Czerwiński
  - Huber Grobelny
- - Maciej Jankowski
+ - [Maciej Jankowski](https://github.com/macjank)
  - Krzysztof Prońko
  - [Paweł Stępień](https://github.com/pastepi)
 
