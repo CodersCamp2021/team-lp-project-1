@@ -6,7 +6,7 @@
 
 **Team members**:
 
- - Patryk Brodziak
+ - [Patryk Brodziak](https://github.com/patrykbrodziak1)
  - Jakub Czerwiński
  - Huber Grobelny
  - Maciej Jankowski
