@@ -8,7 +8,7 @@
 
  - Patryk Brodziak
  - Jakub Czerwiński
- - Huber Grobelny
+ - [Huber Grobelny](https://github.com/Burbinox)
  - Maciej Jankowski
  - Krzysztof Prońko
  - [Paweł Stępień](https://github.com/pastepi)
