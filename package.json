@@ -5,7 +5,9 @@
   "scripts": {
     "watch": "parcel watch",
     "start": "parcel --https",
-    "build": "parcel build"
+    "build": "parcel build",
+    "build-github": "rm -rf dist && parcel build ./src/index.html --public-url https://coderscamp2021.github.io/team-lp-project-1/",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "parcel": "^2.0.1"
