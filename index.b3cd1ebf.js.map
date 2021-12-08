@@ -1,0 +1,1 @@
+{"mappings":"AAAAA,QAAQC,IAAI,WCAZD,QAAQC,IAAI,WCGZD,QAAQC,IAAI","sources":["src/js/module1.js","src/js/module2.js","src/js/app.js"],"sourcesContent":["console.log('module1');","console.log('module2');","import './module1';\nimport './module2';\n\nconsole.log('Hello world!');\n\n"],"names":["console","log"],"version":3,"file":"index.b3cd1ebf.js.map"}
