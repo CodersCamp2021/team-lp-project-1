@@ -6,7 +6,7 @@
     "watch": "parcel watch",
     "start": "parcel --https",
     "build": "parcel build",
-    "build-github": "rm -rf dist && parcel build ./src/index.html --public-url https://coderscamp2021.github.io/team-lp-project-1/",
+    "build-github": "rm -rf docs && parcel build ./src/index.html --public-url ./ -d docs",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
