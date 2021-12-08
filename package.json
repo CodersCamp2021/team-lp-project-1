@@ -6,7 +6,7 @@
     "watch": "parcel watch",
     "start": "parcel --https",
     "build": "parcel build",
-    "build-github": "rm -rf docs && parcel build ./src/index.html --public-url ./ -d docs",
+    "build-github": "rm -rf docs/* && parcel build ./src/index.html --public-url ./ --dist-dir docs",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
