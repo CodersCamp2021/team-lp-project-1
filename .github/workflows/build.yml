@@ -1,27 +1,28 @@
-Name: Build gh-pages
+name: Build and Deploy
 on:
   push:
-    branches: [ main ]
+    branches:
+      - master
 jobs:
-  build-gh-pages:
-    runs-on: ubuntu-latest      
+  build-and-deploy:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
+
+      - name: Setup node
+        uses: actions/setup-node@v2
         with:
-          node-version: 17
-      - run: npm ci
-      - run: npm run build-github
-      - name: Commit files
-        id: auto-commit-action
-        uses: stefanzweifel/git-auto-commit-action@v4
+          node-version: '17'
+          cache: 'npm'
+
+      - name: Install and Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
-          commit_message: build project for github pages
-      - name: Push changes
-        if: steps.auto-commit-action.outputs.changes_detected == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: No changes detected
-        if: steps.auto-commit-action.outputs.changes_detected == 'false'
-        run: echo "No changes!"
+          branch: gh-pages
+          folder: dist
