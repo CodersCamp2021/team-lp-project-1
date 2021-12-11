@@ -8,7 +8,7 @@ dom_obj = new DomManipulation();
 const selectedElement = dom_obj.getElement('test');
 const selectedImg = dom_obj.getElement('img');
 
-setTimeout(() => dom_obj.setInnerText(selectedElement, 'changing'), 1000);
+setTimeout(() => dom_obj.setText(selectedElement, 'changing'), 1000);
 setTimeout(
   () =>
     dom_obj.setImage(

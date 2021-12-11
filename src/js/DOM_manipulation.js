@@ -4,8 +4,8 @@ export default class DomManipulation {
     return elem;
   }
 
-  setInnerText(elem, text) {
-    elem.innerText = text;
+  setText(elem, text) {
+    elem.Text = text;
   }
 
   setImage(elem, imgPath) {
