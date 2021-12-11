@@ -2,6 +2,7 @@ import './module1';
 import './module2';
 import DomManipulation from './DOM_manipulation';
 
+// Example usage of DomManipulation class. 
 console.log('Hello world!');
 dom_obj = new DomManipulation();
 
