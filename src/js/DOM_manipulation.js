@@ -1,6 +1,26 @@
-export default class DomManipulation{
-    getElement(elem_id){
-        let elem = document.getElementById(elem_id);
-        return elem
-    }
+export default class DomManipulation {
+  getElement(elemId) {
+    let elem = document.getElementById(elemId);
+    return elem;
+  }
+
+  setInnerText(elem, text) {
+    elem.innerText = text;
+  }
+
+  setImage(elem, imgPath) {
+    elem.src = imgPath;
+  }
+
+  setWindIcon(elem, direction) {
+    elem.style.transform = `rotate(${direction}deg)`;
+  }
+
+  setDisplayNone(elem) {
+    elem.style.display = 'none';
+  }
+
+  setDisplayVisible(elem, value) {
+    elem.style.display = value;
+  }
 }
