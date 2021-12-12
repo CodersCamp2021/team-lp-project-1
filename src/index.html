@@ -1,13 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>CodersCamp 2021 - Project 1</title>
-		<link rel="stylesheet" href="css/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
     <script type="module" src="js/app.js"></script>
   </head>
   <body>
-    <h1>Hello, World! (parcel)</h1>
+    <!-- HOME PAGE -->
+    <main>
+      <div class="home">
+        <div class="home-background">
+          <div class="home-container">
+            <!-- SEARCH BAR -->
+            <div class="home-search-bar">
+              <i class="fas fa-search"></i>
+              <input type="text" class="search-input" placeholder="Search..."></>
+            </div>
+            <!-- LAST SEARCHED WEATHER CONDITIONS -->
+            <div class="home-info">
+              <div class="home-info-main">
+                <p class="home-info-city margin0">
+                  Wroclaw
+                  <span class="home-info-date margin0">Monday 12 December</span>
+                </p>
+                <p class="home-info-temp margin0">15°</p>
+              </div>
+              <div class="home-vertical-separator"></div>
+              <div class="home-info-details">
+                <div class="home-high-box">
+                  <p class="home-high-temp margin0 details-value">23°</p>
+                  <p class="home-high margin0 home-props">High</p>
+                </div>
+                <div class="home-low-box">
+                  <p class="home-low-temp margin0 details-value">12°</p>
+                  <p class="home-low margin0 home-props">Low</p>
+                </div>
+                <div class="home-wind-box">
+                  <p class="home-wind-val margin0 details-value">7 mph</p>
+                  <p class="home-wind margin0 home-props">Wind</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
