@@ -1,25 +1,19 @@
-import './module1';
-import './module2';
-import DomManipulation from './DOM_manipulation';
+import DomManipulation from './DomManipulation';
 
-// Example usage of DomManipulation class. 
-console.log('Hello world!');
-dom_obj = new DomManipulation();
+// Example usage of DomManipulation class.
+const selectedElement = new DomManipulation('test');
+const selectedImg = new DomManipulation('img');
 
-const selectedElement = dom_obj.getElement('test');
-const selectedImg = dom_obj.getElement('img');
-
-setTimeout(() => dom_obj.setText(selectedElement, 'changing'), 1000);
+setTimeout(() => selectedElement.setText('changing'), 1000);
 setTimeout(
   () =>
-    dom_obj.setImage(
-      selectedImg,
-      'https://thumbs.dreamstime.com/z/small-cat-8301434.jpg',
+    selectedImg.setImage(
+      'https://metaweather-api.glitch.me/static/img/weather/sn.svg',
     ),
   1500,
 );
 setTimeout(() => {
-  dom_obj.setWindIcon(selectedImg, 36);
+  selectedImg.setWindIcon(36);
 }, 2000);
-setTimeout(() => dom_obj.setDisplayNone(selectedImg), 2500);
-setTimeout(() => dom_obj.setDisplayVisible(selectedImg, 'block'), 3000);
+setTimeout(() => selectedImg.setDisplayToggle(), 2500);
+setTimeout(() => selectedImg.setDisplayToggle(), 3500);
