@@ -54,6 +54,7 @@ export default class WeatherAPI {
 
     return data;
   }
+  
   /**
   *  The method queries the API through locationID and data returns info about the historical weather 
   *  
