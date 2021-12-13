@@ -30,7 +30,7 @@ export default class WeatherAPI {
   * @param {String} name means query in the form of a city name
   * @return {JSON} json object with info: city, id, longitude and latitude 
   */
-  async getLocationId(name) {
+  async getQueryLocations(name) {
     const apiEndpoint = `/api/location/search/?query=${name}`;
 
     const data = await fetchData(apiEndpoint);
