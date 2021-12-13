@@ -15,149 +15,169 @@
     <script type="module" src="js/app.js"></script>
   </head>
   <body>
-    <!-- HOME PAGE -->
-    <main>
-      <div class="home">
-        <div class="home-background">
-          <div class="home-container">
-            <!-- SEARCH BAR -->
-            <div class="home-search-bar">
-              <i class="fas fa-search"></i>
-              <input type="text" class="search-input" placeholder="Search..."></>
+    <!-- HOME VIEW -->
+    <div class="home-view">
+      <div class="home-background">
+        <div class="home-container">
+          <!-- SEARCH BAR -->
+          <div class="home-search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" class="search-input" placeholder="Search..."></>
+          </div>
+          <!-- LAST SEARCHED WEATHER CONDITIONS -->
+          <div class="home-info">
+            <div class="home-info-main">
+              <p class="home-info-city margin0">
+                Wroclaw
+                <span class="home-info-date margin0">Monday 12 December</span>
+              </p>
+              <p class="home-info-temp margin0">15°</p>
             </div>
-            <!-- LAST SEARCHED WEATHER CONDITIONS -->
-            <div class="home-info">
-              <div class="home-info-main">
-                <p class="home-info-city margin0">
-                  Wroclaw
-                  <span class="home-info-date margin0">Monday 12 December</span>
-                </p>
-                <p class="home-info-temp margin0">15°</p>
+            <div class="home-vertical-separator"></div>
+            <div class="home-info-details">
+              <div class="home-high-box">
+                <p class="home-high-temp margin0 details-value">23°</p>
+                <p class="home-high margin0 home-props">High</p>
               </div>
-              <div class="home-vertical-separator"></div>
-              <div class="home-info-details">
-                <div class="home-high-box">
-                  <p class="home-high-temp margin0 details-value">23°</p>
-                  <p class="home-high margin0 home-props">High</p>
-                </div>
-                <div class="home-low-box">
-                  <p class="home-low-temp margin0 details-value">12°</p>
-                  <p class="home-low margin0 home-props">Low</p>
-                </div>
-                <div class="home-wind-box">
-                  <p class="home-wind-val margin0 details-value">7 mph</p>
-                  <p class="home-wind margin0 home-props">Wind</p>
-                </div>
+              <div class="home-low-box">
+                <p class="home-low-temp margin0 details-value">12°</p>
+                <p class="home-low margin0 home-props">Low</p>
+              </div>
+              <div class="home-wind-box">
+                <p class="home-wind-val margin0 details-value">7 mph</p>
+                <p class="home-wind margin0 home-props">Wind</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
 
-    <div class="container"><div class="wrapper">
+    <!-- SEARCH VIEW -->
+    <div class="search-view">
+      <div class="wrapper">
 
       <!-- DAILY SECTION -->
       <div class="daily-section">
-        <div class="daily-section_input">
-        <i class="fas fa-search"></i>
-        <input class="daily-input" type="text" placeholder="Search..." />
+        <div class="daily-section-upper">
+          <div class="daily-section_input">
+            <i class="fas fa-search"></i>
+            <input class="daily-input" type="text" placeholder="Search..." />
+          </div>
+          <div class="daily-section_title">
+            <p class="daily-section_city margin0">Washington DC</p>
+            <p class="daily-section_date margin0">6:46 p.m</p>
+          </div>
         </div>
-        <div class="daily-section_title">
-          <h2 class="daily-section_city">Washington DC</h2>
-          <p class="daily-section_date">6:46 p.m</p>
-        </div>
-        <img
+        <div class="daily-section-image-holder">
+          <img
           class="daily-section_img"
           src="https://metaweather-api.glitch.me/static/img/weather/lc.svg"
           alt=""
-        />
-        <p class="daily-section_temperature">11°C</p>
-        <p class="daily-section_cloudines">Light Cloud</p>
-
-        <div class="daily-section_temperatures">
-          <div class="daily-section_min-temperature">min: 7°C</div>
-          <div class="daily-section_max-temperature">max: 13°C</div>
+          />
         </div>
-        <div class="daily-section_wind">
-          <i class="fas fa-long-arrow-alt-left"></i>
-          <p class="daily-section_wind-parameter">3 mph</p>
+        <div class="daily-info">
+          <p class="daily-section_temperature margin0">11°C</p>
+          <p class="daily-section_cloudines margin0">Light Cloud</p>
+          <div class="daily-section_temperatures">
+            <p class="daily-section_min-temperature">min: 7°C</p>
+            <p class="daily-section_max-temperature">max: 13°C</p>
+          </div>
+          <div class="daily-section_wind">
+            <i class="fas fa-long-arrow-alt-left"></i>
+            <p class="daily-section_wind-parameter margin0">3 mph</p>
+          </div>
         </div>
-        <p class="daily-section_footer">Updated 2 hours 7 minutes ago</p>
+        <p class="daily-section_footer margin0">Updated 2 hours 7 minutes ago</p>
       </div>
 
       <!-- WEATHER CONDITIONS SECTION -->
       <div class="weather-conditions-section">
         <div class="weather-conditions_item">
-          <div class="weather-conditions_title">Tuesday</div>
-          <img
+          <p class="weather-conditions_title margin0">Tuesday</p>
+          <img class="card-image"
             src="https://metaweather-api.glitch.me/static/img/weather/lc.svg"
             alt=""
             class="weather-conditions_img"
           />
-          <p class="weather-conditions_cloudines">Hail</p>
-          <div class="weather-conditions_temperature">5°C</div>
-          <div class="weather-conditions_wind">
-            <i class="fas fa-long-arrow-alt-left"></i>
-            <p class="weather-conditions_wind-parameter">7 mph</p>
+          <div class="card-info">
+            <p class="weather-conditions_cloudines margin0">Hail</p>
+            <p class="weather-conditions_temperature margin0">5°C</p>
+            <div class="weather-conditions_wind">
+              <i class="fas fa-long-arrow-alt-left"></i>
+              <p class="weather-conditions_wind-parameter margin0">7 mph</p>
+            </div>
           </div>
         </div>
+
         <div class="weather-conditions_item">
-          <div class="weather-conditions_title">Wednesday</div>
-          <img
+          <p class="weather-conditions_title margin0">Tuesday</p>
+          <img class="card-image"
             src="https://metaweather-api.glitch.me/static/img/weather/lc.svg"
             alt=""
             class="weather-conditions_img"
           />
-          <p class="weather-conditions_cloudines">Hail</p>
-          <div class="weather-conditions_temperature">5°C</div>
-          <div class="weather-conditions_wind">
-            <i class="fas fa-long-arrow-alt-left"></i>
-            <p class="weather-conditions_wind-parameter">2 mph</p>
+          <div class="card-info">
+            <p class="weather-conditions_cloudines margin0">Hail</p>
+            <p class="weather-conditions_temperature margin0">5°C</p>
+            <div class="weather-conditions_wind">
+              <i class="fas fa-long-arrow-alt-left"></i>
+              <p class="weather-conditions_wind-parameter margin0">7 mph</p>
+            </div>
           </div>
         </div>
+
         <div class="weather-conditions_item">
-          <div class="weather-conditions_title">Thuersday</div>
-          <img
+          <p class="weather-conditions_title margin0">Tuesday</p>
+          <img class="card-image"
             src="https://metaweather-api.glitch.me/static/img/weather/lc.svg"
             alt=""
             class="weather-conditions_img"
           />
-          <p class="weather-conditions_cloudines">Hail</p>
-          <div class="weather-conditions_temperature">5°C</div>
-          <div class="weather-conditions_wind">
-            <i class="fas fa-long-arrow-alt-left"></i>
-            <p class="weather-conditions_wind-parameter">12 mph</p>
+          <div class="card-info">
+            <p class="weather-conditions_cloudines margin0">Hail</p>
+            <p class="weather-conditions_temperature margin0">5°C</p>
+            <div class="weather-conditions_wind">
+              <i class="fas fa-long-arrow-alt-left"></i>
+              <p class="weather-conditions_wind-parameter margin0">7 mph</p>
+            </div>
           </div>
         </div>
+
         <div class="weather-conditions_item">
-          <div class="weather-conditions_title">Friday</div>
-          <img
+          <p class="weather-conditions_title margin0">Tuesday</p>
+          <img class="card-image"
             src="https://metaweather-api.glitch.me/static/img/weather/lc.svg"
             alt=""
             class="weather-conditions_img"
           />
-          <p class="weather-conditions_cloudines">Hail</p>
-          <div class="weather-conditions_temperature">5°C</div>
-          <div class="weather-conditions_wind">
-            <i class="fas fa-long-arrow-alt-left"></i>
-            <p class="weather-conditions_wind-parameter">7 mph</p>
+          <div class="card-info">
+            <p class="weather-conditions_cloudines margin0">Hail</p>
+            <p class="weather-conditions_temperature margin0">5°C</p>
+            <div class="weather-conditions_wind">
+              <i class="fas fa-long-arrow-alt-left"></i>
+              <p class="weather-conditions_wind-parameter margin0">7 mph</p>
+            </div>
           </div>
         </div>
+
         <div class="weather-conditions_item">
-          <div class="weather-conditions_title">Saturday</div>
-          <img
+          <p class="weather-conditions_title margin0">Tuesday</p>
+          <img class="card-image"
             src="https://metaweather-api.glitch.me/static/img/weather/lc.svg"
             alt=""
             class="weather-conditions_img"
           />
-          <p class="weather-conditions_cloudines">Hail</p>
-          <div class="weather-conditions_temperature">5°C</div>
-          <div class="weather-conditions_wind">
-            <i class="fas fa-long-arrow-alt-left"></i>
-            <p class="weather-conditions_wind-parameter">4 mph</p>
+          <div class="card-info">
+            <p class="weather-conditions_cloudines margin0">Hail</p>
+            <p class="weather-conditions_temperature margin0">5°C</p>
+            <div class="weather-conditions_wind">
+              <i class="fas fa-long-arrow-alt-left"></i>
+              <p class="weather-conditions_wind-parameter margin0">7 mph</p>
+            </div>
           </div>
         </div>
+        
       </div>
 
       <!-- MAIN SECTION -->
@@ -165,44 +185,46 @@
         <div class="main-section_info">
           <div class="main-section_first-info">
             <div class="main-section_first-info_title">
-              <p class="main-section_first-info_city">Wrocław<span>Poland</span></p>
-              <p class="main-section_first-info_date">Monday 12 December</p>
+              <p class="main-section_first-info_city margin0">Wroclaw<span>Poland</span></p>
+              <p class="main-section_first-info_date margin0">Monday 12 December</p>
             </div>
-            <div class="main-section_first-info_content">
-              <img
-              src="https://metaweather-api.glitch.me/static/img/weather/lc.svg"
-              alt=""
-              class="main-section_first-info_img"
-            />
-            <div class="main-section_first-info_second-content">
-              <div class="main-section_first-info_second-content_temperature">15°</div>
-              <div class="main-section_first-info_second-content_cloudines">Heavy Cloud</div>
+            <div class="local-weather">
+              <div class="main-section_first-info_content">
+                <img
+                src="https://metaweather-api.glitch.me/static/img/weather/lc.svg"
+                alt=""
+                class="main-section_first-info_img"
+              />
+              <div class="main-section_first-info_second-content">
+                <p class="main-section_first-info_second-content_temperature margin0">15°</p>
+                <p class="main-section_first-info_second-content_cloudines margin0">Heavy Cloud</p>
+              </div>
             </div>
             </div>
           </div>
           <div class="main-section_dash"></div>
           <div class="main-section_second-info">
             <div class="main-section_second-info-content">
-              <div class="main-section_second-info-temperature">23°</div>
-              <div class="main-section_second-info-text">High</div>
+              <p class="main-section_second-info-temperature margin0">23°</p>
+              <p class="main-section_second-info-text margin0">High</p>
             </div>
             <div class="main-section_second-info-content">
-              <div class="main-section_second-info-temperature">13°</div>
-              <div class="main-section_second-info-text">Low</div>
+              <p class="main-section_second-info-temperature margin0">13°</p>
+              <p class="main-section_second-info-text margin0">Low</p>
             </div>
             <div class="main-section_second-info-content">
-              <div class="main-section_second-info-temperature">7 mph</div>
-              <div class="main-section_second-info-text">Wind</div>
+              <p class="main-section_second-info-temperature margin0">7 mph</p>
+              <p class="main-section_second-info-text margin0">Wind</p>
             </div>
-          </div>
-          
-        </div>
 
+          </div> 
+        </div>
+          
         <div class="main-section_location">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d320188.4924168942!2d16.83118174138952!3d51.173511891884615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fe9c2d4b58abf%3A0xb70956aec205e0f5!2zV3JvY8WCYXc!5e0!3m2!1spl!2spl!4v1639395125501!5m2!1spl!2spl" allowfullscreen="" loading="lazy"></iframe>
         </div>
       </div>
-
     </div>
+
   </body>
 </html>
