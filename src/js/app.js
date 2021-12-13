@@ -1,6 +1,6 @@
 import './module1';
 import './module2';
-import WeatherAPI from './api-class';
+import WeatherAPI from './weather-api';
 
 const weather = new WeatherAPI();
 
