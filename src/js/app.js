@@ -1,19 +1,9 @@
+import './module1';
+import './module2';
+import WeatherAPI from './weather-api';
+import AppLocalStorage from './app-local-storage';
 import DomManipulation from './DomManipulation';
 
-// Example usage of DomManipulation class.
+const weather = new WeatherAPI();
+const localStorage = new AppLocalStorage();
 const selectedElement = new DomManipulation('test');
-const selectedImg = new DomManipulation('img');
-
-setTimeout(() => selectedElement.setText('changing'), 1000);
-setTimeout(
-  () =>
-    selectedImg.setImage(
-      'https://metaweather-api.glitch.me/static/img/weather/sn.svg',
-    ),
-  1500,
-);
-setTimeout(() => {
-  selectedImg.setWindIcon(36);
-}, 2000);
-setTimeout(() => selectedImg.setDisplayToggle(), 2500);
-setTimeout(() => selectedImg.setDisplayToggle(), 3500);
