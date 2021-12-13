@@ -49,9 +49,6 @@ export default class WeatherAPI {
 
     const data = await fetchData(apiEndpoint);
 
-    //is this class the right place to handle local storage???
-    localStorage.setItem('weather', JSON.stringify(data));
-
     return data;
   }
   
@@ -66,8 +63,6 @@ export default class WeatherAPI {
     const apiEndpoint = `/api/location/${id}/${date}`;
 
     const data = await fetchData(apiEndpoint);
-
-    console.log(data);
 
     return data;
   }
