@@ -13,7 +13,7 @@
 - [Krzysztof Prońko](https://github.com/Ruud1990)
 - [Paweł Stępień](https://github.com/pastepi)
 
-### How to contribute
+## How to contribute
 
 - Creating a new branch: `git checkout -b brnach-name`
 
@@ -30,3 +30,16 @@
 - Pushing committed changes: `git push`
 
 - Pulling newest changes from the branch: `git checkout branch-name && git pull`
+
+
+## Branch naming convention:
+```
+[new/update/fix/delete]/[shirt-description-using-hypen]
+```
+
+##### Examples:
+```
+new/added-text-search
+update/api-class-filename
+delete/redundant-css-classes
+```
