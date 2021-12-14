@@ -1,7 +1,7 @@
 import './module1';
 import './module2';
-import WeatherAPI from './weather-api';
-import AppLocalStorage from './app-local-storage';
+import WeatherAPI from './weatherApi';
+import AppLocalStorage from './appLocalStorage';
 import DomManipulation from './DomManipulation';
 
 const weather = new WeatherAPI();
