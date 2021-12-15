@@ -45,7 +45,7 @@ export default class DomManipulation {
    * Method responsible for hiding/showing elements,
    * will be used to swap layouts.
    */
-  setDisplayToggle() {
+  toggleDisplay() {
     this.elem.style.display =
       this.elem.style.display === 'none' ? 'block' : 'none';
   }
