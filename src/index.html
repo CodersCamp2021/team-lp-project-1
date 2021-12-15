@@ -22,7 +22,7 @@
           <!-- SEARCH BAR -->
           <div class="home-search-bar">
             <i class="fas fa-search"></i>
-            <input type="text" list="results" class="search-input" placeholder="Search..."></>
+            <input id="home-input" type="text" list="results" class="search-input" placeholder="Search..."></>
             <datalist id="results">
               <option value="Ala"></option>
               <option value="ma"></option>
@@ -32,24 +32,24 @@
           <!-- LAST SEARCHED WEATHER CONDITIONS -->
           <div class="home-info">
             <div class="home-info-main">
-              <p class="home-info-city margin0">
+              <p id="home-city-date" class="home-info-city margin0">
                 Wroclaw
                 <span class="home-info-date margin0">Monday 12 December</span>
               </p>
-              <p class="home-info-temp margin0">15°</p>
+              <p id="home-temp" class="home-info-temp margin0">15°</p>
             </div>
             <div class="home-vertical-separator"></div>
             <div class="home-info-details">
               <div class="home-high-box">
-                <p class="home-high-temp margin0 details-value">23°</p>
+                <p id="home-max" class="home-high-temp margin0 details-value">23°</p>
                 <p class="home-high margin0 home-props">High</p>
               </div>
               <div class="home-low-box">
                 <p class="home-low-temp margin0 details-value">12°</p>
-                <p class="home-low margin0 home-props">Low</p>
+                <p id="home-min" class="home-low margin0 home-props">Low</p>
               </div>
               <div class="home-wind-box">
-                <p class="home-wind-val margin0 details-value">7 mph</p>
+                <p id="home-speed" class="home-wind-val margin0 details-value">7 mph</p>
                 <p class="home-wind margin0 home-props">Wind</p>
               </div>
             </div>
@@ -67,33 +67,34 @@
         <div class="daily-section-upper">
           <div class="daily-section_input">
             <i class="fas fa-search"></i>
-            <input class="daily-input" list="results" type="text" placeholder="Search..." />
+            <input id="daily-input" class="daily-input" list="results" type="text" placeholder="Search..." />
           </div>
           <div class="daily-section_title">
-            <p class="daily-section_city margin0">Washington DC</p>
-            <p class="daily-section_date margin0">6:46 p.m</p>
+            <p id="daily-city-name" class="daily-section_city margin0">Washington DC</p>
+            <p id="daily-current-time" class="daily-section_date margin0">6:46 p.m</p>
           </div>
         </div>
         <div class="daily-section-image-holder">
           <img
+          id="daily-abbr"
           class="daily-section_img"
           src="https://www.metaweather.com/static/img/weather/lc.svg"
           alt=""
           />
         </div>
         <div class="daily-info">
-          <p class="daily-section_temperature margin0">11°C</p>
-          <p class="daily-section_cloudines margin0">Light Cloud</p>
+          <p id="daily-temp" class="daily-section_temperature margin0">11°C</p>
+          <p id="daily-state" class="daily-section_cloudines margin0">Light Cloud</p>
           <div class="daily-section_temperatures">
-            <p class="daily-section_min-temperature">min: 7°C</p>
-            <p class="daily-section_max-temperature">max: 13°C</p>
+            <p id="daily-min" class="daily-section_min-temperature">min: 7°C</p>
+            <p id="daily-max" class="daily-section_max-temperature">max: 13°C</p>
           </div>
           <div class="daily-section_wind">
-            <i class="fas fa-long-arrow-alt-left"></i>
-            <p class="daily-section_wind-parameter margin0">3 mph</p>
+            <i id="daily-arrow" class="fas fa-long-arrow-alt-left"></i>
+            <p id="daily-wind-speed" class="daily-section_wind-parameter margin0">3 mph</p>
           </div>
         </div>
-        <p class="daily-section_footer margin0">Updated 2 hours 7 minutes ago</p>
+        <p id="daily-update" class="daily-section_footer margin0">Updated 2 hours 7 minutes ago</p>
       </div>
 
       <!-- WEATHER CONDITIONS SECTION -->
@@ -101,90 +102,100 @@
         
         <!-- FIRST CARD -->
         <div class="weather-conditions_item">
-          <p class="weather-conditions_title margin0">Tuesday</p>
-          <img class="card-image"
+          <p id="card1-day" class="weather-conditions_title margin0">Tuesday</p>
+          <img 
+            id="card1-abbr"
+            class="card-image"
             src="https://www.metaweather.com/static/img/weather/lc.svg"
             alt=""
             class="weather-conditions_img"
           />
           <div class="card-info">
-            <p class="weather-conditions_cloudines margin0">Hail</p>
-            <p class="weather-conditions_temperature margin0">5°C</p>
+            <p id="card1-state" class="weather-conditions_cloudines margin0">Hail</p>
+            <p id="card1-temp" class="weather-conditions_temperature margin0">5°C</p>
             <div class="weather-conditions_wind">
-              <i class="fas fa-long-arrow-alt-left"></i>
-              <p class="weather-conditions_wind-parameter margin0">7 mph</p>
+              <i id="card1-arrow" class="fas fa-long-arrow-alt-left"></i>
+              <p id="card1-wind" class="weather-conditions_wind-parameter margin0">7 mph</p>
             </div>
           </div>
         </div>
         
         <!-- SECOND CARD -->
         <div class="weather-conditions_item">
-          <p class="weather-conditions_title margin0">Tuesday</p>
-          <img class="card-image"
+          <p id="card2-day" class="weather-conditions_title margin0">Tuesday</p>
+          <img 
+            id="card2-abbr"
+            class="card-image"
             src="https://www.metaweather.com/static/img/weather/lc.svg"
             alt=""
             class="weather-conditions_img"
           />
           <div class="card-info">
-            <p class="weather-conditions_cloudines margin0">Hail</p>
-            <p class="weather-conditions_temperature margin0">5°C</p>
+            <p id="card2-state" class="weather-conditions_cloudines margin0">Hail</p>
+            <p id="card2-temp" class="weather-conditions_temperature margin0">5°C</p>
             <div class="weather-conditions_wind">
-              <i class="fas fa-long-arrow-alt-left"></i>
-              <p class="weather-conditions_wind-parameter margin0">7 mph</p>
+              <i id="card2-arrow" class="fas fa-long-arrow-alt-left"></i>
+              <p id="card2-wind" class="weather-conditions_wind-parameter margin0">7 mph</p>
             </div>
           </div>
         </div>
         
         <!-- THIRD CARD -->
         <div class="weather-conditions_item">
-          <p class="weather-conditions_title margin0">Tuesday</p>
-          <img class="card-image"
+          <p id="card3-day" class="weather-conditions_title margin0">Tuesday</p>
+          <img 
+            id="card3-abbr"
+            class="card-image"
             src="https://www.metaweather.com/static/img/weather/lc.svg"
             alt=""
             class="weather-conditions_img"
           />
           <div class="card-info">
-            <p class="weather-conditions_cloudines margin0">Hail</p>
-            <p class="weather-conditions_temperature margin0">5°C</p>
+            <p id="card3-state" class="weather-conditions_cloudines margin0">Hail</p>
+            <p id="card3-temp" class="weather-conditions_temperature margin0">5°C</p>
             <div class="weather-conditions_wind">
-              <i class="fas fa-long-arrow-alt-left"></i>
-              <p class="weather-conditions_wind-parameter margin0">7 mph</p>
+              <i id="card3-arrow" class="fas fa-long-arrow-alt-left"></i>
+              <p id="card3-wind" class="weather-conditions_wind-parameter margin0">7 mph</p>
             </div>
           </div>
         </div>
 
         <!-- FOURTH CARD -->
         <div class="weather-conditions_item">
-          <p class="weather-conditions_title margin0">Tuesday</p>
-          <img class="card-image"
+          <p id="card4-day" class="weather-conditions_title margin0">Tuesday</p>
+          <img 
+            id="card4-abbr"
+            class="card-image"
             src="https://www.metaweather.com/static/img/weather/lc.svg"
             alt=""
             class="weather-conditions_img"
           />
           <div class="card-info">
-            <p class="weather-conditions_cloudines margin0">Hail</p>
-            <p class="weather-conditions_temperature margin0">5°C</p>
+            <p id="card4-state" class="weather-conditions_cloudines margin0">Hail</p>
+            <p id="card4-temp" class="weather-conditions_temperature margin0">5°C</p>
             <div class="weather-conditions_wind">
-              <i class="fas fa-long-arrow-alt-left"></i>
-              <p class="weather-conditions_wind-parameter margin0">7 mph</p>
+              <i id="card4-arrow" class="fas fa-long-arrow-alt-left"></i>
+              <p id="card4-wind" class="weather-conditions_wind-parameter margin0">7 mph</p>
             </div>
           </div>
         </div>
 
         <!-- FIFTH CARD -->
         <div class="weather-conditions_item">
-          <p class="weather-conditions_title margin0">Tuesday</p>
-          <img class="card-image"
+          <p id="card5-day" class="weather-conditions_title margin0">Tuesday</p>
+          <img 
+            id="card5-abbr"
+            class="card-image"
             src="https://www.metaweather.com/static/img/weather/lc.svg"
             alt=""
             class="weather-conditions_img"
           />
           <div class="card-info">
-            <p class="weather-conditions_cloudines margin0">Hail</p>
-            <p class="weather-conditions_temperature margin0">5°C</p>
+            <p id="card5-state" class="weather-conditions_cloudines margin0">Hail</p>
+            <p id="card5-temp" class="weather-conditions_temperature margin0">5°C</p>
             <div class="weather-conditions_wind">
-              <i class="fas fa-long-arrow-alt-left"></i>
-              <p class="weather-conditions_wind-parameter margin0">7 mph</p>
+              <i id="card5-arrow" class="fas fa-long-arrow-alt-left"></i>
+              <p id="card5-wind" class="weather-conditions_wind-parameter margin0">7 mph</p>
             </div>
           </div>
         </div>
@@ -196,19 +207,20 @@
         <div class="main-section_info">
           <div class="main-section_first-info">
             <div class="main-section_first-info_title">
-              <p class="main-section_first-info_city margin0">Wroclaw<span>Poland</span></p>
-              <p class="main-section_first-info_date margin0">Monday 12 December</p>
+              <p id="local-city-country" class="main-section_first-info_city margin0">Wroclaw<span>Poland</span></p>
+              <p id="local-date" class="main-section_first-info_date margin0">Monday 12 December</p>
             </div>
             <div class="local-weather">
               <div class="main-section_first-info_content">
                 <img
+                id="local-abbr"
                 src="https://www.metaweather.com/static/img/weather/lc.svg"
                 alt=""
                 class="main-section_first-info_img"
               />
               <div class="main-section_first-info_second-content">
-                <p class="main-section_first-info_second-content_temperature margin0">15°</p>
-                <p class="main-section_first-info_second-content_cloudines margin0">Heavy Cloud</p>
+                <p id="local-temp" class="main-section_first-info_second-content_temperature margin0">15°</p>
+                <p id="local-state" class="main-section_first-info_second-content_cloudines margin0">Heavy Cloud</p>
               </div>
             </div>
             </div>
@@ -216,15 +228,15 @@
           <div class="main-section_dash"></div>
           <div class="main-section_second-info">
             <div class="main-section_second-info-content">
-              <p class="main-section_second-info-temperature margin0">23°</p>
+              <p id="local-high" class="main-section_second-info-temperature margin0">23°</p>
               <p class="main-section_second-info-text margin0">High</p>
             </div>
             <div class="main-section_second-info-content">
-              <p class="main-section_second-info-temperature margin0">13°</p>
+              <p id="local-low" class="main-section_second-info-temperature margin0">13°</p>
               <p class="main-section_second-info-text margin0">Low</p>
             </div>
             <div class="main-section_second-info-content">
-              <p class="main-section_second-info-temperature margin0">7 mph</p>
+              <p id="local-speed" class="main-section_second-info-temperature margin0">7 mph</p>
               <p class="main-section_second-info-text margin0">Wind</p>
             </div>
           </div> 
