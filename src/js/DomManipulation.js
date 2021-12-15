@@ -31,6 +31,8 @@ export default class DomManipulation {
    * @param {Array} itemList
    */
   setDatalistChildren(itemList) {
+    this.elem.innerHTML = '';
+
     itemList.forEach((item) => {
       const option = document.createElement('option');
       option.value = item.title;
