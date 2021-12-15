@@ -36,6 +36,7 @@ export default class DomManipulation {
     itemList.forEach((item) => {
       const option = document.createElement('option');
       option.value = item.title;
+      option.dataset.woeid = item.woeid;
       this.elem.append(option);
     });
   }
