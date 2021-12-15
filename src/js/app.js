@@ -15,16 +15,12 @@ const dataList = new DomManipulation('results');
 
 searchView.toggleDisplay();
 
-/**
- * Source of the debounce function:
- * https://levelup.gitconnected.com/debounce-in-javascript-improve-your-applications-performance-5b01855e086
- * Debounce allows the app to wait for the user to pause typing
- * before requesting data from API. This way the requests won't be sent out
- * every keystroke. *
- * @param {function} func function to be invoked after the delay specified with 'wait'.
- * @param {number} wait time in ms
- * @returns {function} closure
- */
+// debounce function
+// Originally inspired by  David Walsh (https://davidwalsh.name/javascript-debounce-function)
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// `wait` milliseconds.
 const debounce = (func, wait) => {
   let timeout;
 
