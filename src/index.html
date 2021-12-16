@@ -22,7 +22,7 @@
           <!-- SEARCH BAR -->
           <div class="home-search-bar">
             <i class="fas fa-search"></i>
-            <input id="home-input" type="text" list="results" class="search-input" placeholder="Search..."></>
+            <input id="home-input" type="text" list="results" class="search-input inputs" placeholder="Search..."></>
             <datalist id="results">
               <option value="Ala"></option>
               <option value="ma"></option>
@@ -32,10 +32,10 @@
           <!-- LAST SEARCHED WEATHER CONDITIONS -->
           <div class="home-info">
             <div class="home-info-main">
-              <p id="home-city-date" class="home-info-city margin0">
-                Wroclaw
-                <span class="home-info-date margin0">Monday 12 December</span>
-              </p>
+              <div class="home-city-date">
+                <p id="home-city" class="home-info-city margin0">Wroclaw</p>
+                <p id="home-date" class="home-date margin0">Monday 12 December</p>
+              </div>
               <p id="home-temp" class="home-info-temp margin0">15°</p>
             </div>
             <div class="home-vertical-separator"></div>
@@ -67,7 +67,7 @@
         <div class="daily-section-upper">
           <div class="daily-section_input">
             <i class="fas fa-search"></i>
-            <input id="daily-input" class="daily-input" list="results" type="text" placeholder="Search..." />
+            <input id="daily-input" class="daily-input inputs" list="results" type="text" placeholder="Search..." />
           </div>
           <div class="daily-section_title">
             <p id="daily-city-name" class="daily-section_city margin0">Washington DC</p>
@@ -207,7 +207,10 @@
         <div class="main-section_info">
           <div class="main-section_first-info">
             <div class="main-section_first-info_title">
-              <p id="local-city-country" class="main-section_first-info_city margin0">Wroclaw<span>Poland</span></p>
+              <div class="main-city-country">
+                <p id="local-city" class="main-section_first-info_city margin0">Wroclaw</p>
+                <p id="local-country" class="main-country margin0">Poland</p>
+              </div>
               <p id="local-date" class="main-section_first-info_date margin0">Monday 12 December</p>
             </div>
             <div class="local-weather">
