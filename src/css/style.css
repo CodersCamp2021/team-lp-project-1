@@ -236,7 +236,7 @@ input[type='text']:focus {
 .daily-section_city {
   font-size: 2rem;
   font-weight: 700;
-  color: black;
+  color: var(--main-text);
 }
 
 .daily-section_date {
@@ -267,6 +267,7 @@ input[type='text']:focus {
 .daily-section_temperature {
   font-weight: bold;
   font-size: 3em;
+  color: var(--main-text);
 }
 
 .daily-section_cloudines {
@@ -298,8 +299,11 @@ input[type='text']:focus {
   transform: rotate(67deg);
 }
 
-.daily-section_wind-parameter {
+.section_wind-parameter {
   font-size: 1.2rem;
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 5%;
 }
 
 .daily-section_footer {
@@ -332,7 +336,7 @@ input[type='text']:focus {
   font-size: 1.5rem;
   font-weight: 500;
   color: var(--main-text);
-  margin-top: 5%;
+  padding-top: 15%;
 }
 
 .card-image {
@@ -370,11 +374,6 @@ input[type='text']:focus {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-}
-
-.weather-conditions_wind-parameter {
-  font-size: 1rem;
-  margin-left: 2%;
 }
 
 /* MAIN */
@@ -461,6 +460,7 @@ input[type='text']:focus {
 .main-section_first-info_second-content_temperature {
   font-size: 5rem;
   font-weight: 500;
+  color: var(--main-text);
 }
 
 .main-section_first-info_second-content_cloudines {
@@ -491,7 +491,7 @@ input[type='text']:focus {
 }
 
 .main-section_second-info-temperature {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--main-text);
 }
