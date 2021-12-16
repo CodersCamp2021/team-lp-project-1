@@ -22,11 +22,11 @@ const getDataFromAPI = async (e) => {
     const dailyCityName = new DomManipulation('daily-city-name')
     dailyCityName.setText(data.title)
     const dailyCurrentTime = new DomManipulation('daily-current-time')
-    dailyCurrentTime.setText(data.time)
-    const abbr = new DomManipulation('daily-abbr')
+    dailyCurrentTime.setText(data.time.substr(11,5))
+    const abbr = new DomManipulation('daily-abbr');
     abbr.setImage(`https://www.metaweather.com/static/img/weather/${data.consolidated_weather[0].weather_state_abbr}.svg`)
     const dailyTemp = new DomManipulation('daily-temp')
-    dailyTemp.setText(data.consolidated_weather[0].the_temp)
+    dailyTemp.setText(parseInt(data.consolidated_weather[0].the_temp), 10);
     const dailyState = new DomManipulation('daily-state')
     dailyState.setText(data.consolidated_weather[0].weather_state_name)
     const dailyMin = new DomManipulation('daily-min')
@@ -37,6 +37,19 @@ const getDataFromAPI = async (e) => {
     dailyArrow.setWindIcon(data.consolidated_weather[0].wind_direction)
     const dailyWindSpeed = new DomManipulation('daily-wind-speed')
     dailyWindSpeed.setText(data.consolidated_weather[0].wind_speed)
+    for (let day = 1; day < 6; day++){
+        console.log(`card${day}-day`);
+        const abbr = new DomManipulation(`card${day}-abbr`);
+        const dailyTemp = new DomManipulation(`card${day}-temp`);
+        const dailyState = new DomManipulation(`card${day}-state`);
+        const dailyWindSpeed = new DomManipulation(`card${day}-wind`);
+        const dailyArrow = new DomManipulation(`card${day}-arrow`);
+        abbr.setImage(`https://www.metaweather.com/static/img/weather/${data.consolidated_weather[day].weather_state_abbr}.svg`)
+        dailyTemp.setText(parseInt(data.consolidated_weather[day].the_temp), 10)
+        dailyState.setText(data.consolidated_weather[day].weather_state_name);
+        dailyWindSpeed.setText(parseInt(data.consolidated_weather[day].wind_speed), 10);
+        dailyArrow.setWindIcon(data.consolidated_weather[day].wind_direction);
+    };
     searchView.setDisplayToggle()
 }
 
