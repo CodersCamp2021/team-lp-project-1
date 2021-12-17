@@ -6,7 +6,6 @@ import DomManipulation from './DomManipulation';
 
 const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
-const selectedElement = new DomManipulation('search-input');
 
 const searchInput = new DomManipulation('home-input');
 const homeView = new DomManipulation('home-view');
