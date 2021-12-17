@@ -42,4 +42,21 @@ const handleInput = async (e) => {
   }
 };
 
-searchInput.elem.addEventListener('keyup', debounce(handleInput, 1500));
+searchInput.elem.addEventListener('keyup', debounce(handleInput, 500));
+
+// Provisional screen switcher - subject to change, made to allow
+// working on other features.
+searchInput.elem.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    console.log(dataList.elem.children[0].dataset.woeid);
+    screenSwitch(dataList.elem.children[0].dataset.woeid);
+  }
+});
+
+const screenSwitch = async (locationID) => {
+  weather.getWeatherData(locationID).then((weatherData) => {
+    console.log(weatherData);
+    homeView.toggleDisplay();
+    searchView.toggleDisplay();
+  });
+};
