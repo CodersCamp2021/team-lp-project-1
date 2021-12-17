@@ -26,10 +26,26 @@ export default class DomManipulation {
   }
 
   /**
+   * Creates and sets options for selected element (eg. 'datalist')
+   * based on the items array 'title' property.
+   * @param {Array} itemList
+   */
+  setDatalistChildren(itemList) {
+    this.elem.innerHTML = '';
+
+    itemList.forEach((item) => {
+      const option = document.createElement('option');
+      option.value = item.title;
+      option.dataset.woeid = item.woeid;
+      this.elem.append(option);
+    });
+  }
+
+  /**
    * Method responsible for hiding/showing elements,
    * will be used to swap layouts.
    */
-  setDisplayToggle() {
+  toggleDisplay() {
     this.elem.style.display =
       this.elem.style.display === 'none' ? 'block' : 'none';
   }
