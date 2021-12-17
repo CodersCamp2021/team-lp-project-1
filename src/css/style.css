@@ -77,6 +77,9 @@ body {
   border-radius: 15px;
   height: 70%;
   opacity: 0.8;
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--light-text);
 }
 
 .home-info-main {
@@ -88,6 +91,12 @@ body {
   margin-left: 2%;
 }
 
+.home-city-date {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
 .home-info-city {
   font-size: 2rem;
   font-weight: 600;
@@ -95,10 +104,11 @@ body {
   padding-left: 2%;
 }
 
-.home-info-date {
-  font-size: 1rem;
-  font-weight: 300;
-  color: var(--light-text);
+.home-date {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 3%;
+  padding-bottom: 1.7%;
 }
 
 .home-info-temp {
@@ -226,7 +236,7 @@ input[type='text']:focus {
 .daily-section_city {
   font-size: 2rem;
   font-weight: 700;
-  color: black;
+  color: var(--main-text);
 }
 
 .daily-section_date {
@@ -257,6 +267,7 @@ input[type='text']:focus {
 .daily-section_temperature {
   font-weight: bold;
   font-size: 3em;
+  color: var(--main-text);
 }
 
 .daily-section_cloudines {
@@ -288,8 +299,11 @@ input[type='text']:focus {
   transform: rotate(67deg);
 }
 
-.daily-section_wind-parameter {
+.section_wind-parameter {
   font-size: 1.2rem;
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 5%;
 }
 
 .daily-section_footer {
@@ -322,7 +336,7 @@ input[type='text']:focus {
   font-size: 1.5rem;
   font-weight: 500;
   color: var(--main-text);
-  margin-top: 5%;
+  padding-top: 15%;
 }
 
 .card-image {
@@ -360,11 +374,6 @@ input[type='text']:focus {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-}
-
-.weather-conditions_wind-parameter {
-  font-size: 1rem;
-  margin-left: 2%;
 }
 
 /* MAIN */
@@ -412,16 +421,25 @@ input[type='text']:focus {
   align-items: flex-start;
 }
 
+.main-city-country {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 2%;
+}
+
 .main-section_first-info_city {
   font-size: 2.4rem;
   font-weight: 500;
+  color: var(--main-text);
 }
 
-.main-section_first-info_city span {
+.main-country {
   color: var(--light-text);
-  font-size: 0.8em;
+  font-size: 1.5rem;
   font-weight: 300;
   padding-left: 5%;
+  padding-bottom: 1%;
 }
 
 .main-section_first-info_date {
@@ -442,6 +460,7 @@ input[type='text']:focus {
 .main-section_first-info_second-content_temperature {
   font-size: 5rem;
   font-weight: 500;
+  color: var(--main-text);
 }
 
 .main-section_first-info_second-content_cloudines {
@@ -472,7 +491,7 @@ input[type='text']:focus {
 }
 
 .main-section_second-info-temperature {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--main-text);
 }
