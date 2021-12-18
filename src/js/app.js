@@ -53,10 +53,13 @@ searchInput.elem.addEventListener('input', debounce(handleInput, 1500));
 // Provisional screen switcher - subject to change, made to allow
 // working on other features.
 
-inputForm.addEventListener('submit', (e) => {
+inputForm.addEventListener('submit', function (e) {
   e.preventDefault();
-  console.log(dataList.elem.children[0].dataset.woeid);
-  screenSwitch(dataList.elem.children[0].dataset.woeid);
+  let datalistOptions = this.getElementsByTagName('datalist')[0].children;
+  let input = this.getElementsByTagName('input')[0];
+  if (verifyInput(datalistOptions, input)) {
+    screenSwitch(input.dataset.currentWoeid);
+  }
 });
 
 const screenSwitch = async (locationID) => {
@@ -65,6 +68,27 @@ const screenSwitch = async (locationID) => {
     homeView.toggleDisplay();
     searchView.toggleDisplay();
   });
+};
+
+const verifyInput = (options, input) => {
+  // need a visual indicator if it didn't find a match
+  console.log(options);
+  const cityList = Array.from(options).map((option) => ({
+    // Creating an array of { cityName, ID } objects
+    title: option.value,
+    woeid: option.dataset.woeid,
+  }));
+
+  const cityMatch = cityList.find(
+    ({ title }) => title.toLowerCase() === input.value.toLowerCase(),
+  );
+
+  if (cityMatch) {
+    input.dataset.currentWoeid = cityMatch.woeid; // setting current woeid of input to be that of matched city
+    return true;
+  } else {
+    return false;
+  }
 };
 
 const setInputLoading = (input) => {
