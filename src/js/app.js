@@ -15,6 +15,8 @@ const dataList = new DomManipulation('results');
 
 searchView.toggleDisplay();
 
+let isLoading = false;
+
 // debounce function
 // Originally inspired by  David Walsh (https://davidwalsh.name/javascript-debounce-function)
 
@@ -35,14 +37,18 @@ const debounce = (func, wait) => {
 };
 
 const handleInput = async (e) => {
-  if (e.target.value && e.key !== 'Enter') {
+  if (e.target.value) {
+    setInputLoading(e.target);
     const res = await weather.getQueryLocations(e.target.value);
-    console.log(res);
+    if (res.length < 1) {
+      console.log('No locations found');
+    }
+    setInputLoading(e.target);
     dataList.setDatalistChildren(res);
   }
 };
 
-searchInput.elem.addEventListener('keyup', debounce(handleInput, 500));
+searchInput.elem.addEventListener('input', debounce(handleInput, 1500));
 
 // Provisional screen switcher - subject to change, made to allow
 // working on other features.
@@ -59,4 +65,14 @@ const screenSwitch = async (locationID) => {
     homeView.toggleDisplay();
     searchView.toggleDisplay();
   });
+};
+
+const setInputLoading = (input) => {
+  isLoading = !isLoading;
+  if (isLoading) {
+    input.disabled = true;
+  } else {
+    input.disabled = false;
+    input.focus();
+  }
 };
