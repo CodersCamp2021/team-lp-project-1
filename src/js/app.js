@@ -8,11 +8,7 @@ const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
 
 const searchInput = new DomManipulation('home-input');
-const homeView = new DomManipulation('home-view');
-const searchView = new DomManipulation('search-view');
 const dataList = new DomManipulation('results');
-
-searchView.toggleDisplay();
 
 // debounce function
 // Originally inspired by  David Walsh (https://davidwalsh.name/javascript-debounce-function)
@@ -42,20 +38,3 @@ const handleInput = async (e) => {
 };
 
 searchInput.elem.addEventListener('keyup', debounce(handleInput, 500));
-
-// Provisional screen switcher - subject to change, made to allow
-// working on other features.
-searchInput.elem.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    console.log(dataList.elem.children[0].dataset.woeid);
-    screenSwitch(dataList.elem.children[0].dataset.woeid);
-  }
-});
-
-const screenSwitch = async (locationID) => {
-  weather.getWeatherData(locationID).then((weatherData) => {
-    console.log(weatherData);
-    homeView.toggleDisplay();
-    searchView.toggleDisplay();
-  });
-};
