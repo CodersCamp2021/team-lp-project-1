@@ -47,6 +47,14 @@ export default class DomManipulation {
    */
   toggleDisplay() {
     this.elem.style.display =
-      this.elem.style.display === 'none' ? 'block' : 'none';
+      this.elem.style.display === 'none' ? 'flex' : 'none';
+  }
+
+  /**
+   * Sets display property of element passed by id in constructor
+   * @param {String} display
+   */
+  setDisplay(display) {
+    this.elem.style.display = display;
   }
 }
