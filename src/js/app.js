@@ -7,6 +7,7 @@ import DomManipulation from './DomManipulation';
 const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
 
+const inputForm = document.querySelector('.home-search-bar');
 const searchInput = new DomManipulation('home-input');
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
@@ -45,11 +46,11 @@ searchInput.elem.addEventListener('keyup', debounce(handleInput, 500));
 
 // Provisional screen switcher - subject to change, made to allow
 // working on other features.
-searchInput.elem.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    console.log(dataList.elem.children[0].dataset.woeid);
-    screenSwitch(dataList.elem.children[0].dataset.woeid);
-  }
+
+inputForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  console.log(dataList.elem.children[0].dataset.woeid);
+  screenSwitch(dataList.elem.children[0].dataset.woeid);
 });
 
 const screenSwitch = async (locationID) => {
