@@ -55,8 +55,9 @@ searchInput.elem.addEventListener('input', debounce(handleInput, 1500));
 
 inputForm.addEventListener('submit', function (e) {
   e.preventDefault();
-  let datalistOptions = this.getElementsByTagName('datalist')[0].children;
   let input = this.getElementsByTagName('input')[0];
+  let datalistOptions = input.list.children;
+
   if (verifyInput(datalistOptions, input)) {
     screenSwitch(input.dataset.currentWoeid);
   }
@@ -71,8 +72,6 @@ const screenSwitch = async (locationID) => {
 };
 
 const verifyInput = (options, input) => {
-  // need a visual indicator if it didn't find a match
-  console.log(options);
   const cityList = Array.from(options).map((option) => ({
     // Creating an array of { cityName, ID } objects
     title: option.value,
