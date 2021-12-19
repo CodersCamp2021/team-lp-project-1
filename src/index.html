@@ -20,15 +20,20 @@
       <div class="home-background">
         <div class="home-container">
           <!-- SEARCH BAR -->
-          <div class="home-search-bar">
-            <i class="fas fa-search"></i>
+          <form class="home-search-bar" action="submit">
+            <div class="home-search-icon-container">
+              <i id="standbyIcon" class="fas fa-search active"></i>
+              <i id='errorIcon' class="fas fa-exclamation"></i>
+              <i id='readyIcon' class="fas fa-check"></i>
+              <div id='loadingSpinner' class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
             <input id="home-input" type="text" list="results" class="search-input inputs" placeholder="Search..."></>
             <datalist id="results">
               <option value="Ala"></option>
               <option value="ma"></option>
               <option value="kota"></option>
             </datalist>
-          </div>
+          </form>
           <!-- LAST SEARCHED WEATHER CONDITIONS -->
           <div class="home-info">
             <div class="home-info-main">
