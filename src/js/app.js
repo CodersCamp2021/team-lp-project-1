@@ -5,6 +5,7 @@ import AppLocalStorage from './appLocalStorage';
 import DomManipulation from './DomManipulation';
 import debounce from './debounce';
 import verifyInput from './verifyInput';
+import updateSearchBarDisplay from './updateSearchBarStatus';
 
 const INPUT_STATES = {
   standby: 'standby',
@@ -26,6 +27,7 @@ const dataList = new DomManipulation('results');
 searchView.toggleDisplay();
 
 let inputStatus = INPUT_STATES.standby;
+updateSearchBarDisplay(inputStatus);
 
 const handleInput = async (e) => {
   if (e.target.value) {
@@ -33,9 +35,13 @@ const handleInput = async (e) => {
 
     if (res.length < 1) {
       console.log('No locations found');
+      inputStatus = INPUT_STATES.error;
+      updateSearchBarDisplay(INPUT_STATES.error);
+    } else {
+      inputStatus = INPUT_STATES.standby;
+      updateSearchBarDisplay(INPUT_STATES.standby);
+      dataList.setDatalistChildren(res);
     }
-
-    dataList.setDatalistChildren(res);
   }
 };
 
@@ -55,8 +61,15 @@ function handleSubmit(e) {
   }
 }
 
-searchInput.elem.addEventListener('input', () => {
+searchInput.elem.addEventListener('input', (e) => {
+  if (!e.target.value) {
+    inputStatus = INPUT_STATES.standby;
+    updateSearchBarDisplay(INPUT_STATES.standby);
+    return;
+  }
+
   inputStatus = INPUT_STATES.loading;
+  updateSearchBarDisplay(INPUT_STATES.loading);
 });
 searchInput.elem.addEventListener('input', debounce(handleInput, 1500));
 inputForm.addEventListener('submit', handleSubmit);
