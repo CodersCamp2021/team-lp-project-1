@@ -49,4 +49,12 @@ export default class DomManipulation {
     this.elem.style.display =
       this.elem.style.display === 'none' ? 'block' : 'none';
   }
+
+  makeActive() {
+    this.elem.classList.add('active');
+  }
+
+  makeNotActive() {
+    this.elem.classList.remove('active');
+  }
 }
