@@ -48,20 +48,22 @@ const handleInput = async (e) => {
   }
 };
 
-searchInput.elem.addEventListener('input', debounce(handleInput, 1500));
-
-// Provisional screen switcher - subject to change, made to allow
-// working on other features.
-
-inputForm.addEventListener('submit', function (e) {
+function handleSubmit(e) {
   e.preventDefault();
+
   let input = this.getElementsByTagName('input')[0];
   let datalistOptions = input.list.children;
+
+  // Provisional screen switcher - subject to change, made to allow
+  // working on other features.
 
   if (verifyInput(datalistOptions, input)) {
     screenSwitch(input.dataset.currentWoeid);
   }
-});
+}
+
+searchInput.elem.addEventListener('input', debounce(handleInput, 1500));
+inputForm.addEventListener('submit', handleSubmit);
 
 const screenSwitch = async (locationID) => {
   weather.getWeatherData(locationID).then((weatherData) => {
