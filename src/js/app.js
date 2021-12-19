@@ -38,12 +38,13 @@ const debounce = (func, wait) => {
 
 const handleInput = async (e) => {
   if (e.target.value) {
-    setInputLoading(e.target);
     const res = await weather.getQueryLocations(e.target.value);
+
     if (res.length < 1) {
       console.log('No locations found');
     }
-    setInputLoading(e.target);
+
+    isLoading = false;
     dataList.setDatalistChildren(res);
   }
 };
@@ -64,6 +65,9 @@ function handleSubmit(e) {
   }
 }
 
+searchInput.elem.addEventListener('input', () => {
+  isLoading = true;
+});
 searchInput.elem.addEventListener('input', debounce(handleInput, 1500));
 inputForm.addEventListener('submit', handleSubmit);
 
@@ -94,6 +98,6 @@ const verifyInput = (options, input) => {
   }
 };
 
-const setInputLoading = (input) => {
-  isLoading = !isLoading;
-};
+// const setInputLoading = (input) => {
+//   isLoading = !isLoading;
+// };
