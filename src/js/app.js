@@ -6,6 +6,14 @@ import DomManipulation from './DomManipulation';
 import debounce from './debounce';
 import verifyInput from './verifyInput';
 
+const INPUT_STATES = {
+  standby: 'standby',
+  error: 'error',
+  ready: 'ready',
+  loading: 'loading',
+  reload: 'reload',
+};
+
 const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
 
@@ -17,7 +25,7 @@ const dataList = new DomManipulation('results');
 
 searchView.toggleDisplay();
 
-let isLoading = false;
+let inputStatus = INPUT_STATES.standby;
 
 const handleInput = async (e) => {
   if (e.target.value) {
@@ -27,7 +35,6 @@ const handleInput = async (e) => {
       console.log('No locations found');
     }
 
-    isLoading = false;
     dataList.setDatalistChildren(res);
   }
 };
@@ -35,7 +42,7 @@ const handleInput = async (e) => {
 function handleSubmit(e) {
   e.preventDefault();
 
-  if (isLoading) return;
+  if (inputStatus !== INPUT_STATES.ready) return;
 
   let input = this.getElementsByTagName('input')[0];
   let datalistOptions = input.list.children;
@@ -49,7 +56,7 @@ function handleSubmit(e) {
 }
 
 searchInput.elem.addEventListener('input', () => {
-  isLoading = true;
+  inputStatus = INPUT_STATES.loading;
 });
 searchInput.elem.addEventListener('input', debounce(handleInput, 1500));
 inputForm.addEventListener('submit', handleSubmit);
@@ -61,7 +68,3 @@ const screenSwitch = async (locationID) => {
     searchView.toggleDisplay();
   });
 };
-
-// const setInputLoading = (input) => {
-//   isLoading = !isLoading;
-// };
