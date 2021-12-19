@@ -49,7 +49,8 @@ body {
   background-color: var(--div-bg);
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
+  align-items: center;
   border-radius: 15px;
   opacity: 0.8;
 }
@@ -61,7 +62,7 @@ body {
   padding-left: 2%;
 }
 
-.fas {
+.home-search-icon-container .fas {
   font-size: 1.5rem;
   color: var(--main-text);
   align-self: center;
@@ -70,7 +71,7 @@ body {
   display: none;
 }
 
-.fas.active {
+.home-search-icon-container .fas.active {
   display: block;
 }
 
@@ -168,6 +169,24 @@ body {
   padding: 1% 2%;
   margin: 1%;
   width: 100%;
+}
+
+.home-search-clear .fas {
+  font-size: 2rem;
+  color: var(--main-text);
+  margin-right: 1rem;
+  cursor: pointer;
+
+  display: none;
+}
+
+.home-search-clear .fas.active {
+  display: block;
+}
+
+.home-search-info #search-info-content {
+  white-space: nowrap;
+  margin-right: 2rem;
 }
 
 .home-info {
