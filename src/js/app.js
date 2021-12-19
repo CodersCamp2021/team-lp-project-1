@@ -3,6 +3,8 @@ import './module2';
 import WeatherAPI from './weatherApi';
 import AppLocalStorage from './appLocalStorage';
 import DomManipulation from './DomManipulation';
+import debounce from './debounce';
+import verifyInput from './verifyInput';
 
 const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
@@ -16,25 +18,6 @@ const dataList = new DomManipulation('results');
 searchView.toggleDisplay();
 
 let isLoading = false;
-
-// debounce function
-// Originally inspired by  David Walsh (https://davidwalsh.name/javascript-debounce-function)
-
-// Returns a function, that, as long as it continues to be invoked, will not
-// be triggered. The function will be called after it stops being called for
-// `wait` milliseconds.
-const debounce = (func, wait) => {
-  let timeout;
-
-  return function execFunc(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-};
 
 const handleInput = async (e) => {
   if (e.target.value) {
@@ -77,25 +60,6 @@ const screenSwitch = async (locationID) => {
     homeView.toggleDisplay();
     searchView.toggleDisplay();
   });
-};
-
-const verifyInput = (options, input) => {
-  const cityList = Array.from(options).map((option) => ({
-    // Creating an array of { cityName, ID } objects
-    title: option.value,
-    woeid: option.dataset.woeid,
-  }));
-
-  const cityMatch = cityList.find(
-    ({ title }) => title.toLowerCase() === input.value.toLowerCase(),
-  );
-
-  if (cityMatch) {
-    input.dataset.currentWoeid = cityMatch.woeid; // setting current woeid of input to be that of matched city
-    return true;
-  } else {
-    return false;
-  }
 };
 
 // const setInputLoading = (input) => {
