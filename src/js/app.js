@@ -31,19 +31,30 @@ let inputStatus = INPUT_STATES.standby;
 updateSearchBarDisplay(inputStatus);
 
 const handleInput = async (e) => {
-  if (e.target.value) {
-    const res = await weather.getQueryLocations(e.target.value);
+  if (!e.target.value) return;
 
-    if (res.length < 1) {
-      console.log('No locations found');
-      inputStatus = INPUT_STATES.error;
-      updateSearchBarDisplay(INPUT_STATES.error);
-      searchBarInfo.setText('No results');
-    } else {
-      inputStatus = INPUT_STATES.standby;
-      updateSearchBarDisplay(INPUT_STATES.standby);
-      dataList.setDatalistChildren(res);
-    }
+  const res = await weather.getQueryLocations(e.target.value);
+
+  if (res.length < 1) {
+    console.log('No locations found');
+    inputStatus = INPUT_STATES.error;
+    updateSearchBarDisplay(INPUT_STATES.error);
+    searchBarInfo.setText('No results');
+
+    return;
+  }
+
+  dataList.setDatalistChildren(res);
+
+  let input = e.target;
+  let datalistOptions = input.list.children;
+
+  if (verifyInput(datalistOptions, input)) {
+    inputStatus = INPUT_STATES.ready;
+    updateSearchBarDisplay(INPUT_STATES.ready);
+  } else {
+    inputStatus = INPUT_STATES.standby;
+    updateSearchBarDisplay(INPUT_STATES.standby);
   }
 };
 
@@ -53,24 +64,27 @@ function handleSubmit(e) {
   if (inputStatus !== INPUT_STATES.ready) return;
 
   let input = this.getElementsByTagName('input')[0];
-  let datalistOptions = input.list.children;
+  screenSwitch(input.dataset.currentWoeid);
+
+  // let input = this.getElementsByTagName('input')[0];
+  // let datalistOptions = input.list.children;
 
   // Provisional screen switcher - subject to change, made to allow
   // working on other features.
 
-  if (verifyInput(datalistOptions, input)) {
-    screenSwitch(input.dataset.currentWoeid);
-  }
+  // if (verifyInput(datalistOptions, input)) {
+  //   screenSwitch(input.dataset.currentWoeid);
+  // }
 }
 
 searchInput.elem.addEventListener('input', (e) => {
+  searchBarInfo.setText('');
+
   if (!e.target.value) {
     inputStatus = INPUT_STATES.standby;
     updateSearchBarDisplay(INPUT_STATES.standby);
     return;
   }
-
-  searchBarInfo.setText('');
 
   inputStatus = INPUT_STATES.loading;
   updateSearchBarDisplay(INPUT_STATES.loading);
