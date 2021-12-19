@@ -23,6 +23,7 @@ const searchInput = new DomManipulation('home-input');
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
 const dataList = new DomManipulation('results');
+const searchBarInfo = new DomManipulation('search-info-content');
 
 searchView.toggleDisplay();
 
@@ -37,6 +38,7 @@ const handleInput = async (e) => {
       console.log('No locations found');
       inputStatus = INPUT_STATES.error;
       updateSearchBarDisplay(INPUT_STATES.error);
+      searchBarInfo.setText('No results');
     } else {
       inputStatus = INPUT_STATES.standby;
       updateSearchBarDisplay(INPUT_STATES.standby);
@@ -67,6 +69,8 @@ searchInput.elem.addEventListener('input', (e) => {
     updateSearchBarDisplay(INPUT_STATES.standby);
     return;
   }
+
+  searchBarInfo.setText('');
 
   inputStatus = INPUT_STATES.loading;
   updateSearchBarDisplay(INPUT_STATES.loading);
