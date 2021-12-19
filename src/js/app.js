@@ -51,6 +51,8 @@ const handleInput = async (e) => {
 function handleSubmit(e) {
   e.preventDefault();
 
+  if (isLoading) return;
+
   let input = this.getElementsByTagName('input')[0];
   let datalistOptions = input.list.children;
 
@@ -94,10 +96,4 @@ const verifyInput = (options, input) => {
 
 const setInputLoading = (input) => {
   isLoading = !isLoading;
-  if (isLoading) {
-    input.disabled = true;
-  } else {
-    input.disabled = false;
-    input.focus();
-  }
 };
