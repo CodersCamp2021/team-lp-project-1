@@ -318,8 +318,9 @@ body {
   width: 100%;
 }
 
-.daily-section_input {
+.daily-search-bar{
   display: flex;
+  align-items: center;
   width: 80%;
   background-color: var(--main-bg);
   border-radius: 15px;
@@ -329,6 +330,7 @@ body {
 
 .daily-input {
   border: none;
+  width: 100%;
   background-color: var(--main-bg);
   border-radius: 15px;
   margin: 2%;

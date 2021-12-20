@@ -73,9 +73,21 @@
       <!-- DAILY SECTION -->
       <div class="daily-section">
         <div class="daily-section-upper">
-          <form class="daily-section_input" action="submit">
-            <i class="fas fa-search"></i>
+          <form class="daily-search-bar" action="submit">
+            <div class="search-icon-container">
+              <i id="daily-standbyIcon" class="fas fa-search active"></i>
+              <i id='daily-errorIcon' class="fas fa-exclamation"></i>
+              <i id='daily-readyIcon' class="fas fa-check"></i>
+              <i id='daily-reloadIcon' class="fas fa-redo"></i>
+              <div id='daily-loadingSpinner' class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
             <input id="daily-input" class="daily-input inputs" list="results" type="text" placeholder="Search..." />
+            <div class="search-info-container">
+              <p id="daily-search-info"></p>
+            </div>
+            <div class="search-clear-container">
+              <i class="fas fa-times active"></i>
+            </div>
           </form>
           <div class="daily-section_title">
             <p id="daily-city-name" class="daily-section_city margin0">Washington DC</p>
