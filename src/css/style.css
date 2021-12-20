@@ -186,7 +186,7 @@ body {
 
 .search-info-container p {
   white-space: nowrap;
-  margin-right: 2rem;
+  margin: auto 1rem;
 }
 
 .home-info {
