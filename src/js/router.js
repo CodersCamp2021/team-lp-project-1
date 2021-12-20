@@ -1,7 +1,9 @@
 import DomManipulation from './DomManipulation';
+import WeatherAPI from './weatherApi';
 
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
+const weather = new WeatherAPI();
 
 /**
  * Pushes proper state to history with url of site we are actually on
@@ -27,23 +29,33 @@ const router = async () => {
     },
     {
       path: '/search',
-      view: () => {
+      view: async () => {
+        const cityParams = new URLSearchParams(location.search);
+        const cityVal = cityParams.get('city').toString();
+
         homeView.setDisplay('none');
         searchView.setDisplay('flex');
+        await weather
+          .getQueryLocations(cityVal)
+          .then((cityData) => weather.getWeatherData(cityData[0].woeid))
+          .then((cityWeather) => console.log(cityWeather));
       },
     },
   ];
 
   // loop through routes to create potencial matches
-  const potencialMatches = routes.map((route) => {
+  const potentialMatches = routes.map((route) => {
     return {
       route: route,
       isMatch: location.pathname === route.path,
+      hasQuery: new URLSearchParams(location.search).get('city'),
     };
   });
 
-  // finding potencial match
-  let match = potencialMatches.find((potencialMatch) => potencialMatch.isMatch);
+  // finding potential match
+  let match = potentialMatches.find(
+    (potentialMatch) => potentialMatch.isMatch && potentialMatch.hasQuery,
+  );
 
   if (!match) {
     match = {
@@ -53,6 +65,20 @@ const router = async () => {
   }
 
   match.route.view();
+};
+
+const getQueryParams = (cityQuery) => {
+  return new URLSearchParams({ city: cityQuery }).toString();
+};
+
+const checkForQuery = async () => {
+  const cityParams = new URLSearchParams(location.search);
+  const cityVal = cityParams.get('city');
+  if (cityVal) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 /**
@@ -70,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.matches('[data-link]')) {
       e.preventDefault();
       navigateTo('/search');
+      // history.replaceState(null, null, `?${getQueryParams('London')}`);
     }
   });
 
