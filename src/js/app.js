@@ -1,5 +1,3 @@
-import './module1';
-import './module2';
 import WeatherAPI from './weatherApi';
 import AppLocalStorage from './appLocalStorage';
 import DomManipulation from './DomManipulation';
@@ -16,6 +14,7 @@ searchView.toggleDisplay();
 // debounce function
 // Originally inspired by  David Walsh (https://davidwalsh.name/javascript-debounce-function)
 
+<<<<<<< HEAD
 // Returns a function, that, as long as it continues to be invoked, will not
 // be triggered. The function will be called after it stops being called for
 // `wait` milliseconds.
@@ -50,6 +49,26 @@ searchInput.elem.addEventListener('keyup', (e) => {
     screenSwitch(dataList.elem.children[0].dataset.woeid);
   }
 });
+=======
+
+
+// const getDataFromAPI = async (e) => {
+//     const res = await weather.getQueryLocations(e.target.value);
+//     const woeid = res[0].woeid
+    
+//     homeView.setDisplayToggle()
+//     await setWeatherInfo(woeid);
+//     searchView.setDisplayToggle()
+// }
+
+// searchInput.elem.addEventListener('keyup', event => {
+//     if (event.keyCode === 13){
+//         const data = getDataFromAPI(event)
+//     }
+// });
+
+
+>>>>>>> d24bb7b5c29db743a4149bd5590910a6923b2723
 
 const screenSwitch = async (locationID) => {
   weather.getWeatherData(locationID).then((weatherData) => {
