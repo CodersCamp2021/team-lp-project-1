@@ -21,18 +21,18 @@
         <div class="home-container">
           <!-- SEARCH BAR -->
           <form class="home-search-bar" action="submit">
-            <div class="home-search-icon-container">
-              <i id="standbyIcon" class="fas fa-search active"></i>
-              <i id='errorIcon' class="fas fa-exclamation"></i>
-              <i id='readyIcon' class="fas fa-check"></i>
-              <i id='reloadIcon' class="fas fa-redo"></i>
-              <div id='loadingSpinner' class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div class="search-icon-container">
+              <i id="home-standbyIcon" class="fas fa-search active"></i>
+              <i id='home-errorIcon' class="fas fa-exclamation"></i>
+              <i id='home-readyIcon' class="fas fa-check"></i>
+              <i id='home-reloadIcon' class="fas fa-redo"></i>
+              <div id='home-loadingSpinner' class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
             </div>
             <input id="home-input" type="text" list="results" class="search-input inputs" placeholder="Search..."></>
-            <div class="home-search-info">
-              <p id="search-info-content"></p>
+            <div class="search-info-container">
+              <p id="home-search-info"></p>
             </div>
-            <div class="home-search-clear">
+            <div class="search-clear-container">
               <i class="fas fa-times active"></i>
             </div>
             <datalist id="results"></datalist>
