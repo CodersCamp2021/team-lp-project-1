@@ -5,70 +5,57 @@ import AppLocalStorage from './appLocalStorage';
 import DomManipulation from './DomManipulation';
 
 const weather = new WeatherAPI();
+const localStorage = new AppLocalStorage();
+
 const searchInput = new DomManipulation('home-input');
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
+const dataList = new DomManipulation('results');
 
-const setWeatherInfo = async(data) => {
-    const dailyCityName = new DomManipulation('daily-city-name');
-    dailyCityName.setText(data.title);
-    const dailyCurrentTime = new DomManipulation('daily-current-time');
-    dailyCurrentTime.setText(data.time.substr(11,5));
-    const abbr = new DomManipulation('daily-abbr');
-    abbr.setImage(`https://www.metaweather.com/static/img/weather/${data.consolidated_weather[0].weather_state_abbr}.svg`);
-    const dailyTemp = new DomManipulation('daily-temp');
-    dailyTemp.setText(`${parseInt(data.consolidated_weather[0].the_temp, 10)}°C`);
-    const dailyState = new DomManipulation('daily-state');
-    dailyState.setText(data.consolidated_weather[0].weather_state_name);
-    const dailyMin = new DomManipulation('daily-min');
-    dailyMin.setText(`min: ${parseInt(data.consolidated_weather[0].min_temp, 10)}°C`);
-    const dailyMax = new DomManipulation('daily-max');
-    dailyMax.setText(`max: ${parseInt(data.consolidated_weather[0].max_temp, 10)}°C`);
-    const dailyArrow = new DomManipulation('daily-arrow');
-    dailyArrow.setWindIcon(data.consolidated_weather[0].wind_direction);
-    const dailyWindSpeed = new DomManipulation('daily-wind-speed');
-    dailyWindSpeed.setText(`${parseInt(data.consolidated_weather[0].wind_speed, 10)}\n mph`);
-    const lastUpdate = new DomManipulation('daily-update');
-    setUpdatedTime(lastUpdate, data.consolidated_weather[0].created)
-    for (let day = 1; day < 6; day++){
-        const abbr = new DomManipulation(`card${day}-abbr`);
-        const dailyTemp = new DomManipulation(`card${day}-temp`);
-        const dailyState = new DomManipulation(`card${day}-state`);
-        const dailyWindSpeed = new DomManipulation(`card${day}-wind`);
-        const dailyArrow = new DomManipulation(`card${day}-arrow`);
-        abbr.setImage(`https://www.metaweather.com/static/img/weather/${data.consolidated_weather[day].weather_state_abbr}.svg`);
-        dailyTemp.setText(`${parseInt(data.consolidated_weather[day].the_temp, 10)}°C`);
-        dailyState.setText(data.consolidated_weather[day].weather_state_name);
-        dailyWindSpeed.setText(`${parseInt(data.consolidated_weather[day].wind_speed, 10)}\n mph`);
-        dailyArrow.setWindIcon(data.consolidated_weather[day].wind_direction);
+searchView.toggleDisplay();
+// debounce function
+// Originally inspired by  David Walsh (https://davidwalsh.name/javascript-debounce-function)
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// `wait` milliseconds.
+const debounce = (func, wait) => {
+  let timeout;
+
+  return function execFunc(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
     };
-}
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
 
-const getDataFromAPI = async (e) => {
+const handleInput = async (e) => {
+  if (e.target.value && e.key !== 'Enter') {
     const res = await weather.getQueryLocations(e.target.value);
-    const woeid = res[0].woeid
-    const data = await weather.getWeatherData(woeid)
-    homeView.setDisplayToggle()
-    await setWeatherInfo(data);
-    searchView.setDisplayToggle()
-}
+    console.log(res);
+    dataList.setDatalistChildren(res);
+  }
+};
 
-searchInput.elem.addEventListener('keyup', event => {
-    if (event.keyCode === 13){
-        const data = getDataFromAPI(event)
-    }
+searchInput.elem.addEventListener('keyup', debounce(handleInput, 500));
+
+// Provisional screen switcher - subject to change, made to allow
+// working on other features.
+searchInput.elem.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    console.log(dataList.elem.children[0].dataset.woeid);
+    screenSwitch(dataList.elem.children[0].dataset.woeid);
+  }
 });
 
-function setUpdatedTime(dailyUpdateObject, createdTime) {
-    const timeNow = Date.now();
-    const infoCreatedTime = Date.parse(createdTime);
-    const duration = timeNow - infoCreatedTime;
-    let seconds = Math.floor((duration / 1000) % 60),
-      minutes = Math.floor((duration / (1000 * 60)) % 60),
-      hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
-    hours = (hours < 10) ? "0" + hours : hours;
-    minutes = (minutes < 10) ? "0" + minutes : minutes;
-    seconds = (seconds < 10) ? "0" + seconds : seconds;
-    dailyUpdateObject.setText(`Updated ${hours} hours ${minutes} minutes ago`);
-  };
-
+const screenSwitch = async (locationID) => {
+  weather.getWeatherData(locationID).then((weatherData) => {
+    console.log(weatherData);
+    homeView.toggleDisplay();
+    DomManipulation.setWeatherInfo(weatherData);
+    searchView.toggleDisplay();
+  });
+};
