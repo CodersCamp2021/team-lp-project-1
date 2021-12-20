@@ -3,20 +3,16 @@ import DomManipulation from './DomManipulation';
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
 
-const navigateTo = (url) => {
-  history.pushState(null, null, `?${url}`);
+const navigateTo = (action, params) => {
+  const usp = new URLSearchParams({ action: action, ...params });
+  history.pushState(null, null, `?${usp.toString()}`);
 
   render();
 };
 
-const changeURL = (id, title = '', action = 'search') => {
-  const usp = new URLSearchParams({ action: action, id: id, title: title });
-  // setWeatherInfo goes here (probably)
-  navigateTo(usp);
-};
-
 const render = () => {
   const usp = new URLSearchParams(window.location.search);
+  // setWeatherInfo goes here (probably)
 
   if (usp.get('action') !== 'search') {
     homeView.setDisplay('flex');
@@ -35,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.addEventListener('click', (e) => {
     if (e.target.matches('[data-link]')) {
       e.preventDefault();
-      changeURL(43221, 'London');
+      navigateTo('search', { id: 44234, title: 'London' });
     }
   });
 
