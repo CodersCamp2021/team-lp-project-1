@@ -5,6 +5,15 @@ const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
 const weather = new WeatherAPI();
 
+const validateInput = async (cityName) => {
+  const response = weather.getQueryLocations(cityName);
+
+  response.then((data) => {
+    const obj = data[0];
+    console.log(obj['title']);
+  });
+};
+
 /**
  * Pushes proper state to history with url of site we are actually on
  * @param {String} url
@@ -32,6 +41,8 @@ const router = async () => {
       view: async () => {
         const cityParams = new URLSearchParams(location.search);
         const cityVal = cityParams.get('city').toString();
+
+        validateInput(cityVal);
 
         homeView.setDisplay('none');
         searchView.setDisplay('flex');
