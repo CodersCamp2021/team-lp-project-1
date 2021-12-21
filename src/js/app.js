@@ -3,6 +3,7 @@ import './module2';
 import WeatherAPI from './weatherApi';
 import AppLocalStorage from './appLocalStorage';
 import DomManipulation from './DomManipulation';
+import { navigateTo, render } from './router';
 
 const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
@@ -38,3 +39,16 @@ const handleInput = async (e) => {
 };
 
 searchInput.elem.addEventListener('keyup', debounce(handleInput, 500));
+
+// Renders adequate view while traversing history
+window.addEventListener('popstate', render);
+// Renders adequate view on page load
+document.addEventListener('DOMContentLoaded', () => render());
+
+document.querySelector('#home-input').addEventListener('keydown', (e) => {
+  e.preventDefault();
+  navigateTo('search', {
+    id: input.dataset.currentWoeid,
+    title: input.dataset.currentCity,
+  });
+});
