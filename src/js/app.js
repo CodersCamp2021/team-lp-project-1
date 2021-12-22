@@ -35,30 +35,50 @@ let inputStatus = INPUT_STATES.standby;
 updateSearchBarDisplay(homeSearchBar, inputStatus);
 
 const handleInput = async (e) => {
-  if (!e.target.value) return;
+  const currentInput = e.target;
+  const currentSearchBar = e.target.closest('form');
+  const currentSearchInfo = currentSearchBar.querySelector(
+    '.search-info-container p',
+  );
 
-  const res = await weather.getQueryLocations(e.target.value);
+  currentSearchInfo.innerText = '';
 
-  if (res.length < 1) {
-    console.log('No locations found');
-    inputStatus = INPUT_STATES.error;
-    //updateSearchBarDisplay(INPUT_STATES.error);
-    searchBarInfo.setText('No results');
-
+  if (!e.target.value) {
+    inputStatus = INPUT_STATES.standby;
+    updateSearchBarDisplay(currentSearchBar, inputStatus);
     return;
   }
 
-  dataList.setDatalistChildren(res);
+  inputStatus = INPUT_STATES.loading;
+  updateSearchBarDisplay(currentSearchBar, inputStatus);
 
-  let input = e.target;
-  let datalistOptions = input.list.children;
+  try {
+    const res = await weather.getQueryLocations(e.target.value);
 
-  if (verifyInput(datalistOptions, input)) {
-    inputStatus = INPUT_STATES.ready;
-    //updateSearchBarDisplay(INPUT_STATES.ready);
-  } else {
-    inputStatus = INPUT_STATES.standby;
-    //updateSearchBarDisplay(INPUT_STATES.standby);
+    if (res.length < 1) {
+      console.log('No locations found');
+      inputStatus = INPUT_STATES.error;
+      updateSearchBarDisplay(currentSearchBar, inputStatus);
+      currentSearchInfo.innerText = 'No results';
+
+      return;
+    }
+
+    dataList.setDatalistChildren(res);
+
+    let datalistOptions = currentInput.list.children;
+
+    if (verifyInput(datalistOptions, currentInput)) {
+      inputStatus = INPUT_STATES.ready;
+      updateSearchBarDisplay(currentSearchBar, inputStatus);
+    } else {
+      inputStatus = INPUT_STATES.standby;
+      updateSearchBarDisplay(currentSearchBar, inputStatus);
+    }
+  } catch (error) {
+    inputStatus = INPUT_STATES.reload;
+    updateSearchBarDisplay(currentSearchBar, inputStatus);
+    currentSearchInfo.innerText = 'Try again';
   }
 };
 
@@ -71,18 +91,6 @@ function handleSubmit(e) {
   screenSwitch(input.dataset.currentWoeid);
 }
 
-homeSearchInput.elem.addEventListener('input', (e) => {
-  searchBarInfo.setText('');
-
-  if (!e.target.value) {
-    inputStatus = INPUT_STATES.standby;
-    //updateSearchBarDisplay(INPUT_STATES.standby);
-    return;
-  }
-
-  inputStatus = INPUT_STATES.loading;
-  //updateSearchBarDisplay(INPUT_STATES.loading);
-});
 homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
 homeSearchBar.addEventListener('submit', handleSubmit);
 
