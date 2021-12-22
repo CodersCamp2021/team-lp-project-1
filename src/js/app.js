@@ -28,6 +28,13 @@ searchView.toggleDisplay();
 let inputStatus = INPUT_STATES.standby;
 updateSearchFormDisplay(homeSearchBar, inputStatus);
 
+/**
+ * function validate input phrase, manage search form updating and sends request to API
+ *
+ * @param {Object} e - DOM event object
+ * @returns nothing
+ */
+
 const handleInput = async (e) => {
   const currentInput = e.target;
   const currentSearchBar = e.target.closest('form');
@@ -74,6 +81,12 @@ const handleInput = async (e) => {
   }
 };
 
+/**
+ * function checks if the input is OK and proceeds with the further actions for displaying weather
+ *
+ * @param {*} e - DOM event object
+ * @returns nothing
+ */
 function handleSubmit(e) {
   e.preventDefault();
 
@@ -83,9 +96,15 @@ function handleSubmit(e) {
   screenSwitch(input.dataset.currentWoeid);
 }
 
+/**
+ * event listeners for the search form on the home page
+ */
 homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
 homeSearchBar.addEventListener('submit', handleSubmit);
 
+/**
+ * event listeners for the search form on the datails page
+ */
 dailySearchInput.elem.addEventListener('input', debounce(handleInput, 800));
 dailySearchBar.addEventListener('submit', handleSubmit);
 
@@ -97,6 +116,9 @@ const screenSwitch = async (locationID) => {
   });
 };
 
+/**
+ * event listeners for clearing the input values after clicking the proper icon
+ */
 clearBtns.forEach((btn) => {
   btn.addEventListener('click', (e) => {
     const form = e.target.closest('form');
@@ -110,6 +132,9 @@ clearBtns.forEach((btn) => {
   });
 });
 
+/**
+ * event listeners for reloading the page after clicking the proper icon
+ */
 reloadBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
     console.log('reload');

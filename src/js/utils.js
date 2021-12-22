@@ -1,6 +1,10 @@
 /**
  * search form - related
  */
+
+/**
+ * variable for easier manipulation of inputStatus
+ */
 export const INPUT_STATES = {
   standby: 'standby',
   error: 'error',
@@ -9,6 +13,13 @@ export const INPUT_STATES = {
   reload: 'reload',
 };
 
+/**
+ * function verifies if the phrase in the input field matches some of the locations from API
+ * 
+ * @param {array} cityList - array of locations given as a response from API
+ * @param {DOM element} input - input which is currently being used in the app
+ * @returns 'true' (if verification is positive) else 'false'
+ */
 export const verifyInput = (cityList, input) => {
   const cityMatch = cityList.find(
     ({ title }) => title.toLowerCase() === input.value.toLowerCase(),
@@ -23,6 +34,12 @@ export const verifyInput = (cityList, input) => {
   }
 };
 
+/**
+ * function for updating icons in the search form
+ * 
+ * @param {DOM element} searchBar - current search form which is being used in the app
+ * @param {String} status - current input status ('standby', 'loading', etc.)
+ */
 export const updateSearchFormDisplay = (searchBar, status) => {
   const icons = [...searchBar.querySelector('.search-icon-container').children];
 
