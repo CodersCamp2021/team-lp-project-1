@@ -104,3 +104,16 @@ const screenSwitch = async (locationID) => {
     searchView.toggleDisplay();
   });
 };
+
+clearBtns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    const form = e.target.closest('form');
+    const input = form.querySelector('input');
+    const searchInfo = form.querySelector('.search-info-container p');
+
+    input.value = '';
+    inputStatus = INPUT_STATES.standby;
+    updateSearchBarDisplay(form, inputStatus);
+    searchInfo.innerText = '';
+  });
+});
