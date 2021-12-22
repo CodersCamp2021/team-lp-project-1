@@ -20,15 +20,23 @@
       <div class="home-background">
         <div class="home-container">
           <!-- SEARCH BAR -->
-          <div class="home-search-bar">
-            <i class="fas fa-search"></i>
+          <form class="home-search-bar" action="submit">
+            <div class="search-icon-container">
+              <i id="home-standbyIcon" class="fas fa-search active"></i>
+              <i id='home-errorIcon' class="fas fa-exclamation"></i>
+              <i id='home-readyIcon' class="fas fa-check"></i>
+              <i id='home-reloadIcon' class="fas fa-redo"></i>
+              <div id='home-loadingSpinner' class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
             <input id="home-input" type="text" list="results" class="search-input inputs" placeholder="Search..."></>
-            <datalist id="results">
-              <option value="Ala"></option>
-              <option value="ma"></option>
-              <option value="kota"></option>
-            </datalist>
-          </div>
+            <div class="search-info-container">
+              <p id="home-search-info"></p>
+            </div>
+            <div class="search-clear-container">
+              <i class="fas fa-times active"></i>
+            </div>
+            <datalist id="results"></datalist>
+          </form>
           <!-- LAST SEARCHED WEATHER CONDITIONS -->
           <div class="home-info">
             <div class="home-info-main">
@@ -65,10 +73,22 @@
       <!-- DAILY SECTION -->
       <div class="daily-section">
         <div class="daily-section-upper">
-          <div class="daily-section_input">
-            <i class="fas fa-search"></i>
+          <form class="daily-search-bar" action="submit">
+            <div class="search-icon-container">
+              <i id="daily-standbyIcon" class="fas fa-search active"></i>
+              <i id='daily-errorIcon' class="fas fa-exclamation"></i>
+              <i id='daily-readyIcon' class="fas fa-check"></i>
+              <i id='daily-reloadIcon' class="fas fa-redo"></i>
+              <div id='daily-loadingSpinner' class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
             <input id="daily-input" class="daily-input inputs" list="results" type="text" placeholder="Search..." />
-          </div>
+            <div class="search-info-container">
+              <p id="daily-search-info"></p>
+            </div>
+            <div class="search-clear-container">
+              <i class="fas fa-times active"></i>
+            </div>
+          </form>
           <div class="daily-section_title">
             <p id="daily-city-name" class="daily-section_city margin0">Washington DC</p>
             <p id="daily-current-time" class="daily-section_date margin0">6:46 p.m</p>
