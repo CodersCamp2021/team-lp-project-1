@@ -18,12 +18,16 @@ const INPUT_STATES = {
 const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
 
-const inputForm = document.querySelector('.home-search-bar');
-const searchInput = new DomManipulation('home-input');
+const homeSearchBar = document.querySelector('.home-search-bar');
+const dailySearchBar = document.querySelector('.daily-search-bar');
+
+const homeSearchInput = new DomManipulation('home-input');
+const dailySearchInput = new DomManipulation('daily-input');
+
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
 const dataList = new DomManipulation('results');
-const searchBarInfo = new DomManipulation('search-info-content');
+const clearBtns = document.querySelectorAll('.fa-times');
 
 searchView.toggleDisplay();
 
@@ -65,19 +69,9 @@ function handleSubmit(e) {
 
   let input = this.getElementsByTagName('input')[0];
   screenSwitch(input.dataset.currentWoeid);
-
-  // let input = this.getElementsByTagName('input')[0];
-  // let datalistOptions = input.list.children;
-
-  // Provisional screen switcher - subject to change, made to allow
-  // working on other features.
-
-  // if (verifyInput(datalistOptions, input)) {
-  //   screenSwitch(input.dataset.currentWoeid);
-  // }
 }
 
-searchInput.elem.addEventListener('input', (e) => {
+homeSearchInput.elem.addEventListener('input', (e) => {
   searchBarInfo.setText('');
 
   if (!e.target.value) {
@@ -89,8 +83,8 @@ searchInput.elem.addEventListener('input', (e) => {
   inputStatus = INPUT_STATES.loading;
   updateSearchBarDisplay(INPUT_STATES.loading);
 });
-searchInput.elem.addEventListener('input', debounce(handleInput, 1500));
-inputForm.addEventListener('submit', handleSubmit);
+homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
+homeSearchBar.addEventListener('submit', handleSubmit);
 
 const screenSwitch = async (locationID) => {
   weather.getWeatherData(locationID).then((weatherData) => {
