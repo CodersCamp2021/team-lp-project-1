@@ -21,6 +21,7 @@ const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
 const dataList = new DomManipulation('results');
 const clearBtns = document.querySelectorAll('.fa-times');
+const reloadBtns = document.querySelectorAll('.fa-redo');
 
 searchView.toggleDisplay();
 
@@ -106,5 +107,14 @@ clearBtns.forEach((btn) => {
     inputStatus = INPUT_STATES.standby;
     updateSearchFormDisplay(form, inputStatus);
     searchInfo.innerText = '';
+  });
+});
+
+reloadBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    console.log('reload');
+
+    //the event needs to be handled with router functionalities
+    //the app needs to reload now
   });
 });
