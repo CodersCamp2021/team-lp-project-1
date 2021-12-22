@@ -32,7 +32,7 @@ const clearBtns = document.querySelectorAll('.fa-times');
 searchView.toggleDisplay();
 
 let inputStatus = INPUT_STATES.standby;
-updateSearchBarDisplay(inputStatus);
+updateSearchBarDisplay(homeSearchBar, inputStatus);
 
 const handleInput = async (e) => {
   if (!e.target.value) return;
@@ -42,7 +42,7 @@ const handleInput = async (e) => {
   if (res.length < 1) {
     console.log('No locations found');
     inputStatus = INPUT_STATES.error;
-    updateSearchBarDisplay(INPUT_STATES.error);
+    //updateSearchBarDisplay(INPUT_STATES.error);
     searchBarInfo.setText('No results');
 
     return;
@@ -55,10 +55,10 @@ const handleInput = async (e) => {
 
   if (verifyInput(datalistOptions, input)) {
     inputStatus = INPUT_STATES.ready;
-    updateSearchBarDisplay(INPUT_STATES.ready);
+    //updateSearchBarDisplay(INPUT_STATES.ready);
   } else {
     inputStatus = INPUT_STATES.standby;
-    updateSearchBarDisplay(INPUT_STATES.standby);
+    //updateSearchBarDisplay(INPUT_STATES.standby);
   }
 };
 
@@ -76,12 +76,12 @@ homeSearchInput.elem.addEventListener('input', (e) => {
 
   if (!e.target.value) {
     inputStatus = INPUT_STATES.standby;
-    updateSearchBarDisplay(INPUT_STATES.standby);
+    //updateSearchBarDisplay(INPUT_STATES.standby);
     return;
   }
 
   inputStatus = INPUT_STATES.loading;
-  updateSearchBarDisplay(INPUT_STATES.loading);
+  //updateSearchBarDisplay(INPUT_STATES.loading);
 });
 homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
 homeSearchBar.addEventListener('submit', handleSubmit);

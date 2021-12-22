@@ -1,47 +1,35 @@
-import DomManipulation from './DomManipulation';
+const updateSearchBarDisplay = (searchBar, status) => {
+  const icons = [...searchBar.querySelector('.search-icon-container').children];
+  
+  icons.forEach((icon) => {
+    icon.classList.remove('active');
+  });
 
-const standbyIcon = new DomManipulation('standbyIcon');
-const errorIcon = new DomManipulation('errorIcon');
-const readyIcon = new DomManipulation('readyIcon');
-const reloadIcon = new DomManipulation('reloadIcon');
-const loadingSpinner = new DomManipulation('loadingSpinner');
-
-const updateSearchBarDisplay = (status) => {
   switch (status) {
     case 'standby':
-      errorIcon.makeNotActive();
-      readyIcon.makeNotActive();
-      reloadIcon.makeNotActive();
-      loadingSpinner.makeNotActive();
-      standbyIcon.makeActive();
+      const standbyIcon = searchBar.querySelector('.fa-search');
+      standbyIcon.classList.add('active');
+
       break;
     case 'loading':
-      errorIcon.makeNotActive();
-      readyIcon.makeNotActive();
-      reloadIcon.makeNotActive();
-      standbyIcon.makeNotActive();
-      loadingSpinner.makeActive();
+      const loadingIcon = searchBar.querySelector('.lds-spinner');
+      loadingIcon.classList.add('active');
+
       break;
     case 'error':
-      readyIcon.makeNotActive();
-      reloadIcon.makeNotActive();
-      standbyIcon.makeNotActive();
-      loadingSpinner.makeNotActive();
-      errorIcon.makeActive();
+      const errorIcon = searchBar.querySelector('.fa-exclamation');
+      errorIcon.classList.add('active');
+
       break;
     case 'ready':
-      errorIcon.makeNotActive();
-      reloadIcon.makeNotActive();
-      standbyIcon.makeNotActive();
-      loadingSpinner.makeNotActive();
-      readyIcon.makeActive();
+      const readyIcon = searchBar.querySelector('.fa-check');
+      readyIcon.classList.add('active');
+
       break;
     case 'reload':
-      errorIcon.makeNotActive();
-      standbyIcon.makeNotActive();
-      loadingSpinner.makeNotActive();
-      readyIcon.makeNotActive();
-      reloadIcon.makeActive();
+      const reloadIcon = searchBar.querySelector('.fa-redo');
+      reloadIcon.classList.add('active');
+
       break;
     default:
       console.log('unexpected input');
