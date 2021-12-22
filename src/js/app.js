@@ -3,17 +3,10 @@ import './module2';
 import WeatherAPI from './weatherApi';
 import AppLocalStorage from './appLocalStorage';
 import DomManipulation from './DomManipulation';
-import debounce from './debounce';
-import verifyInput from './verifyInput';
-import updateSearchBarDisplay from './updateSearchBarStatus';
-
-const INPUT_STATES = {
-  standby: 'standby',
-  error: 'error',
-  ready: 'ready',
-  loading: 'loading',
-  reload: 'reload',
-};
+import { INPUT_STATES } from './utils';
+import { debounce } from './utils';
+import { verifyInput } from './utils';
+import { updateSearchBarDisplay } from './utils';
 
 const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
