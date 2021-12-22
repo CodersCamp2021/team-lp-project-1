@@ -50,6 +50,10 @@ export default class DomManipulation {
       this.elem.style.display === 'none' ? 'block' : 'none';
   }
 
+  /**
+   * Method puts data from JSON to HTML.
+   * @param {JSON} data 
+   */
   static setWeatherInfo = (data) => {
     const dailyCityName = new DomManipulation('daily-city-name');
     dailyCityName.setText(data.title);
@@ -104,6 +108,11 @@ export default class DomManipulation {
     }
   };
 
+  /**
+   * 
+   * @param {DomManipulation} dailyUpdateObject 
+   * @param {string} createdTime 
+   */
   static setUpdatedTime(dailyUpdateObject, createdTime) {
     const timeNow = Date.now();
     const infoCreatedTime = Date.parse(createdTime);
