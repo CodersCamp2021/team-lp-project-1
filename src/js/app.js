@@ -66,9 +66,7 @@ const handleInput = async (e) => {
 
     dataList.setDatalistChildren(res);
 
-    let datalistOptions = currentInput.list.children;
-
-    if (verifyInput(datalistOptions, currentInput)) {
+    if (verifyInput(res, currentInput)) {
       inputStatus = INPUT_STATES.ready;
       updateSearchBarDisplay(currentSearchBar, inputStatus);
     } else {
