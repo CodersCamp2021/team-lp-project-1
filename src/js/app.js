@@ -6,7 +6,7 @@ import DomManipulation from './DomManipulation';
 import { INPUT_STATES } from './utils';
 import { debounce } from './utils';
 import { verifyInput } from './utils';
-import { updateSearchBarDisplay } from './utils';
+import { updateSearchFormDisplay } from './utils';
 
 const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
@@ -25,7 +25,7 @@ const clearBtns = document.querySelectorAll('.fa-times');
 searchView.toggleDisplay();
 
 let inputStatus = INPUT_STATES.standby;
-updateSearchBarDisplay(homeSearchBar, inputStatus);
+updateSearchFormDisplay(homeSearchBar, inputStatus);
 
 const handleInput = async (e) => {
   const currentInput = e.target;
@@ -38,12 +38,12 @@ const handleInput = async (e) => {
 
   if (!e.target.value) {
     inputStatus = INPUT_STATES.standby;
-    updateSearchBarDisplay(currentSearchBar, inputStatus);
+    updateSearchFormDisplay(currentSearchBar, inputStatus);
     return;
   }
 
   inputStatus = INPUT_STATES.loading;
-  updateSearchBarDisplay(currentSearchBar, inputStatus);
+  updateSearchFormDisplay(currentSearchBar, inputStatus);
 
   try {
     const res = await weather.getQueryLocations(e.target.value);
@@ -51,7 +51,7 @@ const handleInput = async (e) => {
     if (res.length < 1) {
       console.log('No locations found');
       inputStatus = INPUT_STATES.error;
-      updateSearchBarDisplay(currentSearchBar, inputStatus);
+      updateSearchFormDisplay(currentSearchBar, inputStatus);
       currentSearchInfo.innerText = 'No results';
 
       return;
@@ -61,14 +61,14 @@ const handleInput = async (e) => {
 
     if (verifyInput(res, currentInput)) {
       inputStatus = INPUT_STATES.ready;
-      updateSearchBarDisplay(currentSearchBar, inputStatus);
+      updateSearchFormDisplay(currentSearchBar, inputStatus);
     } else {
       inputStatus = INPUT_STATES.standby;
-      updateSearchBarDisplay(currentSearchBar, inputStatus);
+      updateSearchFormDisplay(currentSearchBar, inputStatus);
     }
   } catch (error) {
     inputStatus = INPUT_STATES.reload;
-    updateSearchBarDisplay(currentSearchBar, inputStatus);
+    updateSearchFormDisplay(currentSearchBar, inputStatus);
     currentSearchInfo.innerText = 'Try again';
   }
 };
@@ -104,7 +104,7 @@ clearBtns.forEach((btn) => {
 
     input.value = '';
     inputStatus = INPUT_STATES.standby;
-    updateSearchBarDisplay(form, inputStatus);
+    updateSearchFormDisplay(form, inputStatus);
     searchInfo.innerText = '';
   });
 });

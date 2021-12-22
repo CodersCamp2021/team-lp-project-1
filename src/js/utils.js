@@ -23,7 +23,7 @@ export const verifyInput = (cityList, input) => {
   }
 };
 
-export const updateSearchBarDisplay = (searchBar, status) => {
+export const updateSearchFormDisplay = (searchBar, status) => {
   const icons = [...searchBar.querySelector('.search-icon-container').children];
 
   icons.forEach((icon) => {
