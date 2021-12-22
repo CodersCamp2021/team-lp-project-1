@@ -94,6 +94,9 @@ function handleSubmit(e) {
 homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
 homeSearchBar.addEventListener('submit', handleSubmit);
 
+dailySearchInput.elem.addEventListener('input', debounce(handleInput, 800));
+dailySearchBar.addEventListener('submit', handleSubmit);
+
 const screenSwitch = async (locationID) => {
   weather.getWeatherData(locationID).then((weatherData) => {
     console.log(weatherData);
