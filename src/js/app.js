@@ -143,3 +143,16 @@ reloadBtns.forEach((btn) => {
     //the app needs to reload now
   });
 });
+
+/**
+ * function for reseting both forms
+ * needs to be invoked whenever the app view changes
+ */
+function resetForms() {
+  homeSearchInput.reset();
+  dailySearchInput.reset();
+
+  inputStatus = INPUT_STATES.standby;
+  updateSearchFormDisplay(homeSearchBar, inputStatus);
+  updateSearchFormDisplay(dailySearchBar, inputStatus);
+}

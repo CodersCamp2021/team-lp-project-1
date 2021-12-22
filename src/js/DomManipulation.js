@@ -49,4 +49,7 @@ export default class DomManipulation {
     this.elem.style.display =
       this.elem.style.display === 'none' ? 'block' : 'none';
   }
+  reset() {
+    this.elem.value = '';
+  }
 }
