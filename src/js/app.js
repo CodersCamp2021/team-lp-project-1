@@ -3,10 +3,16 @@ import './module2';
 import WeatherAPI from './weatherApi';
 import AppLocalStorage from './appLocalStorage';
 import DomManipulation from './DomManipulation';
-import { INPUT_STATES } from './utils';
-import { debounce } from './utils';
-import { verifyInput } from './utils';
-import { updateSearchFormDisplay } from './utils';
+import {
+  handleInput,
+  debounce,
+  INPUT_STATES,
+  inputStatus,
+  updateSearchFormDisplay,
+  clearInputBtn,
+  resetForms,
+  screenSwitch,
+} from './utils';
 
 const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
@@ -19,72 +25,18 @@ const dailySearchInput = new DomManipulation('daily-input');
 
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
-const dataList = new DomManipulation('results');
+
 const clearBtns = document.querySelectorAll('.fa-times');
 const reloadBtns = document.querySelectorAll('.fa-redo');
 
 searchView.toggleDisplay();
 
-let inputStatus = INPUT_STATES.standby;
 updateSearchFormDisplay(homeSearchBar, inputStatus);
-
-/**
- * function validate input phrase, manage search form updating and sends request to API
- *
- * @param {Object} e - DOM event object
- * @returns nothing
- */
-
-const handleInput = async (e) => {
-  const currentInput = e.target;
-  const currentSearchBar = e.target.closest('form');
-  const currentSearchInfo = currentSearchBar.querySelector(
-    '.search-info-container p',
-  );
-
-  currentSearchInfo.innerText = '';
-
-  if (!e.target.value) {
-    inputStatus = INPUT_STATES.standby;
-    updateSearchFormDisplay(currentSearchBar, inputStatus);
-    return;
-  }
-
-  inputStatus = INPUT_STATES.loading;
-  updateSearchFormDisplay(currentSearchBar, inputStatus);
-
-  try {
-    const res = await weather.getQueryLocations(e.target.value);
-
-    if (res.length < 1) {
-      console.log('No locations found');
-      inputStatus = INPUT_STATES.error;
-      updateSearchFormDisplay(currentSearchBar, inputStatus);
-      currentSearchInfo.innerText = 'No results';
-
-      return;
-    }
-
-    dataList.setDatalistChildren(res);
-
-    if (verifyInput(res, currentInput)) {
-      inputStatus = INPUT_STATES.ready;
-      updateSearchFormDisplay(currentSearchBar, inputStatus);
-    } else {
-      inputStatus = INPUT_STATES.standby;
-      updateSearchFormDisplay(currentSearchBar, inputStatus);
-    }
-  } catch (error) {
-    inputStatus = INPUT_STATES.reload;
-    updateSearchFormDisplay(currentSearchBar, inputStatus);
-    currentSearchInfo.innerText = 'Try again';
-  }
-};
 
 /**
  * function checks if the input is OK and proceeds with the further actions for displaying weather
  *
- * @param {*} e - DOM event object
+ * @param {Object} e - DOM event object
  * @returns nothing
  */
 function handleSubmit(e) {
@@ -105,31 +57,14 @@ homeSearchBar.addEventListener('submit', handleSubmit);
 /**
  * event listeners for the search form on the datails page
  */
-dailySearchInput.elem.addEventListener('input', debounce(handleInput, 800));
+dailySearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
 dailySearchBar.addEventListener('submit', handleSubmit);
-
-const screenSwitch = async (locationID) => {
-  weather.getWeatherData(locationID).then((weatherData) => {
-    console.log(weatherData);
-    homeView.toggleDisplay();
-    searchView.toggleDisplay();
-  });
-};
 
 /**
  * event listeners for clearing the input values after clicking the proper icon
  */
 clearBtns.forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    const form = e.target.closest('form');
-    const input = form.querySelector('input');
-    const searchInfo = form.querySelector('.search-info-container p');
-
-    input.value = '';
-    inputStatus = INPUT_STATES.standby;
-    updateSearchFormDisplay(form, inputStatus);
-    searchInfo.innerText = '';
-  });
+  btn.addEventListener('click', clearInputBtn);
 });
 
 /**
@@ -143,16 +78,3 @@ reloadBtns.forEach((btn) => {
     //the app needs to reload now
   });
 });
-
-/**
- * function for reseting both forms
- * needs to be invoked whenever the app view changes
- */
-function resetForms() {
-  homeSearchInput.reset();
-  dailySearchInput.reset();
-
-  inputStatus = INPUT_STATES.standby;
-  updateSearchFormDisplay(homeSearchBar, inputStatus);
-  updateSearchFormDisplay(dailySearchBar, inputStatus);
-}
