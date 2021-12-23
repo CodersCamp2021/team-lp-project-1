@@ -45,6 +45,7 @@ searchInput.elem.addEventListener('keyup', debounce(handleInput, 500));
 searchInput.elem.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') {
     console.log(dataList.elem.children[0].dataset.woeid);
+    putLocalSectionInfo()
     screenSwitch(dataList.elem.children[0].dataset.woeid);
   }
 });
@@ -57,3 +58,9 @@ const screenSwitch = async (locationID) => {
     searchView.toggleDisplay();
   });
 };
+
+const putLocalSectionInfo = async () => {
+  weather.getWeatherData(523920).then((weatherData)=> {
+    DomManipulation.setWarsawWeather(weatherData)
+  });
+}

@@ -64,6 +64,18 @@ export default class DomManipulation {
   }
 
   /**
+   * Method returns month name. 
+   * @returns One of month Name as string
+   */
+  setMonth(){
+    const today = new Date().getMonth();
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 
+    'September', 'October', 'November', 'December'];
+    let monthName = months[(today) % 12]
+    return monthName
+  }
+
+  /**
    * Method puts data from JSON to HTML.
    * @param {JSON} data 
    */
@@ -139,5 +151,27 @@ export default class DomManipulation {
     minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
     dailyUpdateObject.setText(`Updated ${hours} hours ${minutes} minutes ago`);
+  }
+
+  /**
+   * Method puts data from JSON to HTML for local Data Info.
+   * @param {JSON} data 
+   */
+  static setWarsawWeather(data){
+    const localCityName = new DomManipulation('local-city-country');
+    localCityName.setText(data.title);
+    const localCurrentTime = new DomManipulation('local-date');
+    localCurrentTime.setText(`${localCurrentTime.setDay(0)} ${new Date().getDate()} ${localCurrentTime.setMonth()}`);
+    const localAbbr = new DomManipulation('local-abbr');
+    localAbbr.setImage(
+      `https://www.metaweather.com/static/img/weather/${data.consolidated_weather[0].weather_state_abbr}.svg`);
+    const localTemp = new DomManipulation('local-temp');
+    localTemp.setText(`${parseInt(data.consolidated_weather[0].the_temp, 10)}°C`);
+    const localTempMin = new DomManipulation('local-low');
+    localTempMin.setText(`${parseInt(data.consolidated_weather[0].min_temp, 10)}°C`);
+    const localTempMax = new DomManipulation('local-high');
+    localTempMax.setText(`${parseInt(data.consolidated_weather[0].max_temp, 10)}°C`);
+    const localWindSpeed = new DomManipulation('local-speed');
+    localWindSpeed.setText(`${parseInt(data.consolidated_weather[0].wind_speed, 10)} mph`);
   }
 }
