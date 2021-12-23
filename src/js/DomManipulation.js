@@ -50,6 +50,14 @@ export default class DomManipulation {
       this.elem.style.display === 'none' ? 'block' : 'none';
   }
 
+  setDay(offset){
+    const today = new Date();
+    const todayID = today.getDay();
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let dayName = days[(todayID + offset) % 7]
+    return dayName
+  }
+
   /**
    * Method puts data from JSON to HTML.
    * @param {JSON} data 
@@ -94,6 +102,7 @@ export default class DomManipulation {
       const dailyState = new DomManipulation(`card${day}-state`);
       const dailyWindSpeed = new DomManipulation(`card${day}-wind`);
       const dailyArrow = new DomManipulation(`card${day}-arrow`);
+      const dayName = new DomManipulation(`card${day}-day`);
       abbr.setImage(
         `https://www.metaweather.com/static/img/weather/${data.consolidated_weather[day].weather_state_abbr}.svg`,
       );
@@ -105,6 +114,7 @@ export default class DomManipulation {
         `${parseInt(data.consolidated_weather[day].wind_speed, 10)}\n mph`,
       );
       dailyArrow.setWindIcon(data.consolidated_weather[day].wind_direction);
+      dayName.setText(dayName.setDay(day))
     }
   };
 
