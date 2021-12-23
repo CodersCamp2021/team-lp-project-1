@@ -22,6 +22,7 @@ export default class DomManipulation {
    * @param {Number} direction
    */
   setWindIcon(direction) {
+    direction = direction + 90
     this.elem.style.transform = `rotate(${direction}deg)`;
   }
 
@@ -50,11 +51,15 @@ export default class DomManipulation {
       this.elem.style.display === 'none' ? 'block' : 'none';
   }
 
+  /**
+   * Method returns day name. 
+   * @param {int} offset 
+   * @returns One of days Name as string
+   */
   setDay(offset){
-    const today = new Date();
-    const todayID = today.getDay();
+    const today = new Date().getDay();
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    let dayName = days[(todayID + offset) % 7]
+    let dayName = days[(today + offset) % 7]
     return dayName
   }
 
