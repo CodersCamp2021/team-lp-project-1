@@ -45,6 +45,8 @@ window.addEventListener('popstate', render);
 // Renders adequate view on page load
 document.addEventListener('DOMContentLoaded', () => render());
 
+// Example implementation.
+// In final version it will probably invoke 'navigateTo()' on 'Submit' event with proper city ID and name
 document.querySelector('#home-input').addEventListener('keydown', (e) => {
   e.preventDefault();
   navigateTo('search', {
