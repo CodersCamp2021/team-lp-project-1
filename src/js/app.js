@@ -3,59 +3,78 @@ import './module2';
 import WeatherAPI from './weatherApi';
 import AppLocalStorage from './appLocalStorage';
 import DomManipulation from './DomManipulation';
+import {
+  handleInput,
+  debounce,
+  INPUT_STATES,
+  inputStatus,
+  updateSearchFormDisplay,
+  clearInputBtn,
+  resetForms,
+  screenSwitch,
+} from './utils';
 
 const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
 
-const searchInput = new DomManipulation('home-input');
+const homeSearchBar = document.querySelector('.home-search-bar');
+const dailySearchBar = document.querySelector('.daily-search-bar');
+
+const homeSearchInput = new DomManipulation('home-input');
+const dailySearchInput = new DomManipulation('daily-input');
+
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
-const dataList = new DomManipulation('results');
+
+const clearBtns = document.querySelectorAll('.fa-times');
+const reloadBtns = document.querySelectorAll('.fa-redo');
 
 searchView.toggleDisplay();
 
-// debounce function
-// Originally inspired by  David Walsh (https://davidwalsh.name/javascript-debounce-function)
+updateSearchFormDisplay(homeSearchBar, inputStatus);
 
-// Returns a function, that, as long as it continues to be invoked, will not
-// be triggered. The function will be called after it stops being called for
-// `wait` milliseconds.
-const debounce = (func, wait) => {
-  let timeout;
+/**
+ * function checks if the input is OK and proceeds with the further actions for displaying weather
+ *
+ * @param {Object} e - DOM event object
+ * @returns nothing
+ */
+function handleSubmit(e) {
+  e.preventDefault();
 
-  return function execFunc(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-};
+  if (inputStatus !== INPUT_STATES.ready) return;
 
-const handleInput = async (e) => {
-  if (e.target.value && e.key !== 'Enter') {
-    const res = await weather.getQueryLocations(e.target.value);
-    console.log(res);
-    dataList.setDatalistChildren(res);
-  }
-};
+  let input = this.getElementsByTagName('input')[0];
+  screenSwitch(input.dataset.currentWoeid);
+}
 
-searchInput.elem.addEventListener('keyup', debounce(handleInput, 500));
+/**
+ * event listeners for the search form on the home page
+ */
+homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
+homeSearchBar.addEventListener('submit', handleSubmit);
 
-// Provisional screen switcher - subject to change, made to allow
-// working on other features.
-searchInput.elem.addEventListener('keyup', (e) => {
-  if (e.key === 'Enter') {
-    console.log(dataList.elem.children[0].dataset.woeid);
-    screenSwitch(dataList.elem.children[0].dataset.woeid);
-  }
+/**
+ * event listeners for the search form on the datails page
+ */
+dailySearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
+dailySearchBar.addEventListener('submit', handleSubmit);
+
+/**
+ * event listeners for clearing the input values after clicking the proper icon
+ */
+clearBtns.forEach((btn) => {
+  btn.addEventListener('click', clearInputBtn);
 });
 
-const screenSwitch = async (locationID) => {
-  weather.getWeatherData(locationID).then((weatherData) => {
-    console.log(weatherData);
-    homeView.toggleDisplay();
-    searchView.toggleDisplay();
+/**
+ * event listeners for reloading the page after clicking the proper icon
+ */
+reloadBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    console.log('reload');
+
+    //the event needs to be handled with router functionalities
+    //the app needs to reload now
   });
-};
+});
