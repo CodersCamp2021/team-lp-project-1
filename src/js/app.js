@@ -82,3 +82,4 @@ reloadBtns.forEach((btn) => {
 window.addEventListener('popstate', render);
 // Renders adequate view on page load
 document.addEventListener('DOMContentLoaded', () => render());
+
