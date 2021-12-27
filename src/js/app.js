@@ -1,5 +1,3 @@
-import './module1';
-import './module2';
 import WeatherAPI from './weatherApi';
 import AppLocalStorage from './appLocalStorage';
 import DomManipulation from './DomManipulation';
@@ -23,11 +21,10 @@ const dailySearchBar = document.querySelector('.daily-search-bar');
 const homeSearchInput = new DomManipulation('home-input');
 const dailySearchInput = new DomManipulation('daily-input');
 
-const homeView = new DomManipulation('home-view');
-const searchView = new DomManipulation('search-view');
-
 const clearBtns = document.querySelectorAll('.fa-times');
 const reloadBtns = document.querySelectorAll('.fa-redo');
+
+const searchView = new DomManipulation('search-view');
 
 searchView.toggleDisplay();
 
@@ -49,16 +46,25 @@ function handleSubmit(e) {
 }
 
 /**
+ * puts Warsaw data in daily section
+ */
+const putLocalSectionInfo = async () => {
+  weather.getWeatherData(523920).then((weatherData)=> {
+    DomManipulation.setWarsawWeather(weatherData)
+  });
+}
+
+/**
  * event listeners for the search form on the home page
  */
 homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
-homeSearchBar.addEventListener('submit', handleSubmit);
+homeSearchBar.addEventListener('submit', () => { handleSubmit(); putLocalSectionInfo() });
 
 /**
  * event listeners for the search form on the datails page
  */
 dailySearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
-dailySearchBar.addEventListener('submit', handleSubmit);
+dailySearchBar.addEventListener('submit', () => { handleSubmit(); putLocalSectionInfo() });
 
 /**
  * event listeners for clearing the input values after clicking the proper icon
