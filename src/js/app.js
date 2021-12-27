@@ -9,8 +9,8 @@ import {
   updateSearchFormDisplay,
   clearInputBtn,
   resetForms,
-  screenSwitch,
 } from './utils';
+import { navigateTo, render } from './router';
 
 const weather = new WeatherAPI();
 const localStorage = new AppLocalStorage();
@@ -42,15 +42,9 @@ function handleSubmit(e) {
   if (inputStatus !== INPUT_STATES.ready) return;
 
   let input = this.getElementsByTagName('input')[0];
-  screenSwitch(input.dataset.currentWoeid);
-}
-
-/**
- * puts Warsaw data in daily section
- */
-const putLocalSectionInfo = async () => {
-  weather.getWeatherData(523920).then((weatherData)=> {
-    DomManipulation.setWarsawWeather(weatherData)
+  navigateTo('search', {
+    id: input.dataset.currentWoeid,
+    title: input.dataset.currentCity,
   });
 }
 
@@ -58,13 +52,13 @@ const putLocalSectionInfo = async () => {
  * event listeners for the search form on the home page
  */
 homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
-homeSearchBar.addEventListener('submit', () => { handleSubmit(); putLocalSectionInfo() });
+homeSearchBar.addEventListener('submit', handleSubmit);
 
 /**
  * event listeners for the search form on the datails page
  */
 dailySearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
-dailySearchBar.addEventListener('submit', () => { handleSubmit(); putLocalSectionInfo() });
+dailySearchBar.addEventListener('submit', handleSubmit);
 
 /**
  * event listeners for clearing the input values after clicking the proper icon
@@ -78,9 +72,14 @@ clearBtns.forEach((btn) => {
  */
 reloadBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
-    console.log('reload');
-
-    //the event needs to be handled with router functionalities
-    //the app needs to reload now
+    resetForms();
+    // TODO: navigateTo exception in router for empty link
+    // navigateTo();
   });
 });
+
+// Renders adequate view while traversing history
+window.addEventListener('popstate', render);
+// Renders adequate view on page load
+document.addEventListener('DOMContentLoaded', () => render());
+
