@@ -20,15 +20,23 @@
       <div class="home-background">
         <div class="home-container">
           <!-- SEARCH BAR -->
-          <div class="home-search-bar">
-            <i class="fas fa-search" data-link></i>
-            <input id="home-input" type="text" list="results" class="search-input inputs" placeholder="Search..."></>
-            <datalist id="results">
-              <option value="Ala"></option>
-              <option value="ma"></option>
-              <option value="kota"></option>
-            </datalist>
-          </div>
+          <form class="home-search-bar" action="submit">
+            <div class="search-icon-container">
+              <i id="home-standbyIcon" class="fas fa-search active"></i>
+              <i id='home-errorIcon' class="fas fa-exclamation"></i>
+              <i id='home-readyIcon' class="fas fa-check"></i>
+              <i id='home-reloadIcon' class="fas fa-redo"></i>
+              <div id='home-loadingSpinner' class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+            <input id="home-input" type="text" list="results" class="search-input inputs" placeholder="Search..." autocomplete="off">
+            <div class="search-info-container">
+              <p id="home-search-info"></p>
+            </div>
+            <div class="search-clear-container">
+              <i class="fas fa-times active"></i>
+            </div>
+            <datalist id="results"></datalist>
+          </form>
           <!-- LAST SEARCHED WEATHER CONDITIONS -->
           <div class="home-info">
             <div class="home-info-main">
@@ -65,10 +73,22 @@
       <!-- DAILY SECTION -->
       <div class="daily-section">
         <div class="daily-section-upper">
-          <div class="daily-section_input">
-            <i class="fas fa-search"></i>
-            <input id="daily-input" class="daily-input inputs" list="results" type="text" placeholder="Search..." />
-          </div>
+          <form class="daily-search-bar" action="submit">
+            <div class="search-icon-container">
+              <i id="daily-standbyIcon" class="fas fa-search active"></i>
+              <i id='daily-errorIcon' class="fas fa-exclamation"></i>
+              <i id='daily-readyIcon' class="fas fa-check"></i>
+              <i id='daily-reloadIcon' class="fas fa-redo"></i>
+              <div id='daily-loadingSpinner' class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+            <input id="daily-input" class="daily-input inputs" list="results" type="text" placeholder="Search..." autocomplete="off"/>
+            <div class="search-info-container">
+              <p id="daily-search-info"></p>
+            </div>
+            <div class="search-clear-container">
+              <i class="fas fa-times active"></i>
+            </div>
+          </form>
           <div class="daily-section_title">
             <p id="daily-city-name" class="daily-section_city margin0">Washington DC</p>
             <p id="daily-current-time" class="daily-section_date margin0">6:46 p.m</p>
@@ -247,7 +267,7 @@
         
         <!-- GOOGLE MAPS FRAME -->
         <div class="main-section_location">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d320188.4924168942!2d16.83118174138952!3d51.173511891884615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fe9c2d4b58abf%3A0xb70956aec205e0f5!2zV3JvY8WCYXc!5e0!3m2!1spl!2spl!4v1639395125501!5m2!1spl!2spl" allowfullscreen="" loading="lazy"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d312779.9431310756!2d20.781016711291045!3d52.232606289062204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc669a869f01%3A0x72f0be2a88ead3fc!2sWarsaw!5e0!3m2!1sen!2spl!4v1640519351049!5m2!1sen!2spl" allowfullscreen="" loading="lazy"></iframe>
         </div>
       </div>
     </div>

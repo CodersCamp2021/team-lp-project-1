@@ -32,7 +32,9 @@ const render = async () => {
     searchView.setDisplay('none');
   } else {
     const weatherData = await weather.getWeatherData(usp.get('id'));
-    // DomManipulation.setWeatherInfo(weatherData) goes here (probably)
+    const warsawData = await weather.getWeatherData(523920);
+    DomManipulation.setWeatherInfo(weatherData);
+    DomManipulation.setWarsawWeather(warsawData);
     homeView.setDisplay('none');
     searchView.setDisplay('flex');
   }
