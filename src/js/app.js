@@ -21,8 +21,6 @@ const dailySearchBar = document.querySelector('.daily-search-bar');
 const homeSearchInput = new DomManipulation('home-input');
 const dailySearchInput = new DomManipulation('daily-input');
 
-const homeView = new DomManipulation('home-view');
-
 const clearBtns = document.querySelectorAll('.fa-times');
 const reloadBtns = document.querySelectorAll('.fa-redo');
 
@@ -47,6 +45,9 @@ function handleSubmit(e) {
   screenSwitch(input.dataset.currentWoeid);
 }
 
+/**
+ * puts Warsaw data in daily section
+ */
 const putLocalSectionInfo = async () => {
   weather.getWeatherData(523920).then((weatherData)=> {
     DomManipulation.setWarsawWeather(weatherData)
