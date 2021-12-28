@@ -7,9 +7,11 @@
     "start": "parcel --https",
     "build": "parcel build",
     "build-github": "parcel build ./src/index.html --public-url https://coderscamp2021.github.io/team-lp-project-1/",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test": "jest"
   },
   "devDependencies": {
+    "jest": "^27.4.5",
     "parcel": "^2.0.1"
   }
 }
