@@ -1,4 +1,4 @@
-class SessionStorage {
+export default class SessionStorage {
   /**
    * The function sets the data in SessionStorage
    * depends on the key and value pair
