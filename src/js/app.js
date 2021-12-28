@@ -73,8 +73,7 @@ clearBtns.forEach((btn) => {
 reloadBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
     resetForms();
-    // TODO: navigateTo exception in router for empty link
-    // navigateTo();
+    navigateTo('', {});
   });
 });
 
@@ -82,4 +81,3 @@ reloadBtns.forEach((btn) => {
 window.addEventListener('popstate', render);
 // Renders adequate view on page load
 document.addEventListener('DOMContentLoaded', () => render());
-
