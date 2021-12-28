@@ -191,6 +191,33 @@ export default class DomManipulation {
     );
   }
 
+  static setLastWeather(data){
+    const homeCityName = new DomManipulation('home-city');
+    homeCityName.setText(data.title);
+    const homeCurrentTime = new DomManipulation('home-date');
+    homeCurrentTime.setText(
+      `${homeCurrentTime.setDay(
+        0,
+      )} ${new Date().getDate()} ${homeCurrentTime.setMonth()}`,
+    );
+    const homeTemp = new DomManipulation('home-temp');
+    homeTemp.setText(
+      `${parseInt(data.consolidated_weather[0].the_temp, 10)}°C`,
+    );
+    const homeTempMin = new DomManipulation('home-min');
+    homeTempMin.setText(
+      `${parseInt(data.consolidated_weather[0].min_temp, 10)}°C`,
+    );
+    const homeTempMax = new DomManipulation('home-max');
+    homeTempMax.setText(
+      `${parseInt(data.consolidated_weather[0].max_temp, 10)}°C`,
+    );
+    const homeWindSpeed = new DomManipulation('home-speed');
+    homeWindSpeed.setText(
+      `${parseInt(data.consolidated_weather[0].wind_speed, 10)} mph`,
+    );
+  };
+
   /**
    * Sets display property of element passed by id in constructor
    * @param {String} display

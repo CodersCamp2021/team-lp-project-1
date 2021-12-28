@@ -13,13 +13,13 @@ import {
 import { navigateTo, render } from './router';
 
 const weather = new WeatherAPI();
-const localStorage = new AppLocalStorage();
 
 const homeSearchBar = document.querySelector('.home-search-bar');
 const dailySearchBar = document.querySelector('.daily-search-bar');
 
 const homeSearchInput = new DomManipulation('home-input');
 const dailySearchInput = new DomManipulation('daily-input');
+const lastWeather = new DomManipulation('last-weather-info');
 
 const clearBtns = document.querySelectorAll('.fa-times');
 const reloadBtns = document.querySelectorAll('.fa-redo');
@@ -81,5 +81,14 @@ reloadBtns.forEach((btn) => {
 // Renders adequate view while traversing history
 window.addEventListener('popstate', render);
 // Renders adequate view on page load
-document.addEventListener('DOMContentLoaded', () => render());
+document.addEventListener('DOMContentLoaded', () => {
+  if (AppLocalStorage.get('lastWeather') === null){
+    lastWeather.setDisplay('none')
+  }
+  else{
+    DomManipulation.setLastWeather(AppLocalStorage.get('lastWeather'));
+    lastWeather.setDisplay('flex')
+  }
+  render();
+});
 

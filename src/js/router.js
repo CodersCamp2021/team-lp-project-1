@@ -1,5 +1,6 @@
 import DomManipulation from './DomManipulation';
 import WeatherAPI from './weatherApi';
+import AppLocalStorage from './appLocalStorage';
 
 const weather = new WeatherAPI();
 const homeView = new DomManipulation('home-view');
@@ -32,6 +33,7 @@ const render = async () => {
     searchView.setDisplay('none');
   } else {
     const weatherData = await weather.getWeatherData(usp.get('id'));
+    AppLocalStorage.set('lastWeather', weatherData);
     const warsawData = await weather.getWeatherData(523920);
     DomManipulation.setWeatherInfo(weatherData);
     DomManipulation.setWarsawWeather(warsawData);
