@@ -13,12 +13,12 @@ const searchView = new DomManipulation('search-view');
  */
 const navigateTo = (action, params) => {
   if (action !== 'search') {
-    history.replaceState(null, null, '');
+    history.replaceState(null, null, '/');
   } else {
     const usp = new URLSearchParams({ action: action, ...params });
     history.pushState(null, null, `?${usp.toString()}`);
-    render();
   }
+  render();
 };
 
 /**
