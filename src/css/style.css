@@ -16,6 +16,24 @@ body {
   background-color: var(--main-bg);
 }
 
+.page-loadingSpinner-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+
+  /* display: none; */
+}
+
+.page-loadingSpinner-container .lds-spinner {
+  display: block;
+  transform: scale(2);
+}
+
 /* HOME VIEW */
 .home-view {
   display: flex; /* <---- SWITCH HERE */
