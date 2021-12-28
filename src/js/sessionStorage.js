@@ -2,11 +2,11 @@ export default class SessionStorage {
   /**
    * The function sets the data in SessionStorage
    * depends on the key and value pair
-   * @param {String} key
-   * @param {String} value
+   * @param {*} key
+   * @param {*} value
    */
   static set(key, value) {
-    window.sessionStorage.setItem(key, value);
+    window.sessionStorage.setItem(key, JSON.stringify(value));
   }
 
   /**
@@ -16,6 +16,6 @@ export default class SessionStorage {
    * @returns {String}
    */
   static get(key) {
-    return window.sessionStorage.getItem(key);
+    return JSON.parse(window.sessionStorage.getItem(key));
   }
 }
