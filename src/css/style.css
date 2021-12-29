@@ -36,6 +36,10 @@ body {
   transform: scale(2);
 }
 
+.page-loadingSpinner-container .lds-spinner div:after {
+  background: #fff;
+}
+
 /* HOME VIEW */
 .home-view {
   display: flex; /* <---- SWITCH HERE */
