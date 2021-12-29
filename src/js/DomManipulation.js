@@ -191,6 +191,10 @@ export default class DomManipulation {
     );
   }
 
+  /**
+   * Method puts data from JSON to HTML for HomeView Data Info.
+   * @param {JSON} data
+   */
   static setLastWeather(data){
     const homeCityName = new DomManipulation('home-city');
     homeCityName.setText(data.title);
