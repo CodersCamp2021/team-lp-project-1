@@ -55,27 +55,47 @@ export default class DomManipulation {
   }
 
   /**
-   * Method returns day name. 
-   * @param {int} offset 
+   * Method returns day name.
+   * @param {int} offset
    * @returns One of days Name as string
    */
-  setDay(offset){
+  setDay(offset) {
     const today = new Date().getDay();
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    let dayName = days[(today + offset) % 7]
-    return dayName
+    const days = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
+    let dayName = days[(today + offset) % 7];
+    return dayName;
   }
 
   /**
-   * Method returns month name. 
+   * Method returns month name.
    * @returns One of month Name as string
    */
-  setMonth(){
+  setMonth() {
     const today = new Date().getMonth();
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 
-    'September', 'October', 'November', 'December'];
-    let monthName = months[(today) % 12]
-    return monthName
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    let monthName = months[today % 12];
+    return monthName;
   }
 
   /**
