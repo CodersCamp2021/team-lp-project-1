@@ -1,5 +1,6 @@
 import DomManipulation from './DomManipulation';
 import WeatherAPI from './weatherApi';
+import SessionStorage from './sessionStorage';
 
 const weather = new WeatherAPI();
 const homeView = new DomManipulation('home-view');
@@ -29,6 +30,7 @@ const navigateTo = (action, params) => {
  */
 const render = async () => {
   const usp = new URLSearchParams(window.location.search);
+  const id = usp.get('id');
 
   if (usp.get('action') !== 'search') {
     homeView.setDisplay('flex');
@@ -36,8 +38,23 @@ const render = async () => {
   } else {
     homeView.setDisplay('none');
     searchView.setDisplay('none');
-    const weatherData = await weather.getWeatherData(usp.get('id'));
-    const warsawData = await weather.getWeatherData(523920);
+    let weatherData;
+    let warsawData;
+
+    if (SessionStorage.get(id)) {
+      weatherData = SessionStorage.get(id);
+    } else {
+      weatherData = await weather.getWeatherData(id);
+      SessionStorage.set(id, weatherData);
+    }
+
+    if (SessionStorage.get(523920)) {
+      warsawData = SessionStorage.get(523920);
+    } else {
+      warsawData = await weather.getWeatherData(523920);
+      SessionStorage.set(523920, warsawData);
+    }
+
     DomManipulation.setWeatherInfo(weatherData);
     DomManipulation.setWarsawWeather(warsawData);
     homeView.setDisplay('none');
