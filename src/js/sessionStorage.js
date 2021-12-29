@@ -9,7 +9,7 @@ export default class SessionStorage {
     try {
       window.sessionStorage.setItem(key, JSON.stringify(value));
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 
@@ -23,7 +23,7 @@ export default class SessionStorage {
     try {
       return JSON.parse(window.sessionStorage.getItem(key));
     } catch (e) {
-      console.log(e);
+      console.error(e);
       return false;
     }
   }
