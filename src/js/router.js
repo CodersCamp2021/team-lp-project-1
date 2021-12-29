@@ -12,9 +12,12 @@ const searchView = new DomManipulation('search-view');
  * @param {object} params
  */
 const navigateTo = (action, params) => {
-  const usp = new URLSearchParams({ action: action, ...params });
-  history.pushState(null, null, `?${usp.toString()}`);
-
+  if (action !== 'search') {
+    history.replaceState(null, null, '/');
+  } else {
+    const usp = new URLSearchParams({ action: action, ...params });
+    history.pushState(null, null, `?${usp.toString()}`);
+  }
   render();
 };
 
@@ -31,6 +34,8 @@ const render = async () => {
     homeView.setDisplay('flex');
     searchView.setDisplay('none');
   } else {
+    homeView.setDisplay('none');
+    searchView.setDisplay('none');
     const weatherData = await weather.getWeatherData(usp.get('id'));
     const warsawData = await weather.getWeatherData(523920);
     DomManipulation.setWeatherInfo(weatherData);
