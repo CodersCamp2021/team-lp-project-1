@@ -5,6 +5,7 @@ import AppLocalStorage from './appLocalStorage';
 const weather = new WeatherAPI();
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
+const lastWeather = new DomManipulation('last-weather-info');
 
 /**
  * navigateTo creates proper query string based on the passed data,
@@ -27,6 +28,13 @@ const navigateTo = (action, params) => {
  */
 const render = async () => {
   const usp = new URLSearchParams(window.location.search);
+
+  if (AppLocalStorage.get('lastWeather')) {
+    DomManipulation.setLastWeather(AppLocalStorage.get('lastWeather'));
+    lastWeather.setDisplay('flex')
+  } else {
+    lastWeather.setDisplay('none')
+  }
 
   if (usp.get('action') !== 'search') {
     homeView.setDisplay('flex');
