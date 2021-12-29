@@ -6,7 +6,11 @@ export default class SessionStorage {
    * @param {*} value
    */
   static set(key, value) {
-    window.sessionStorage.setItem(key, JSON.stringify(value));
+    try {
+      window.sessionStorage.setItem(key, JSON.stringify(value));
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   /**
@@ -16,6 +20,11 @@ export default class SessionStorage {
    * @returns {String}
    */
   static get(key) {
-    return JSON.parse(window.sessionStorage.getItem(key));
+    try {
+      return JSON.parse(window.sessionStorage.getItem(key));
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
   }
 }
