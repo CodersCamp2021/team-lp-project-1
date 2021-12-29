@@ -9,7 +9,7 @@ export default class AppLocalStorage {
     try {
       localStorage.setItem(key, JSON.stringify(value));
     } catch (e) {
-      //
+      console.log(e);
     }
   }
 
@@ -23,7 +23,7 @@ export default class AppLocalStorage {
     try {
       return JSON.parse(localStorage.getItem(key))
     } catch (e) {
-      //
+      console.log(e);
     }
     return null;
   }
@@ -37,7 +37,7 @@ export default class AppLocalStorage {
     try {
       localStorage.removeItem(key);
     } catch (e) {
-      //
+      console.log(e);
     }
   }
 }
