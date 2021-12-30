@@ -4,6 +4,7 @@ import WeatherAPI from './weatherApi';
 const weather = new WeatherAPI();
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
+const pageLoadingSpinner = new DomManipulation('page-loadingSpinner');
 
 /**
  * navigateTo creates proper query string based on the passed data,
@@ -31,8 +32,10 @@ const render = async () => {
     homeView.setDisplay('flex');
     searchView.setDisplay('none');
   } else {
+    pageLoadingSpinner.setDisplay('flex');
     const weatherData = await weather.getWeatherData(usp.get('id'));
     const warsawData = await weather.getWeatherData(523920);
+    pageLoadingSpinner.setDisplay('none');
     DomManipulation.setWeatherInfo(weatherData);
     DomManipulation.setWarsawWeather(warsawData);
     homeView.setDisplay('none');
