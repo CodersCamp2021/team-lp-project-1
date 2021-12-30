@@ -418,13 +418,13 @@ input[type='text']:focus {
 
 .fa-long-arrow-alt-left {
   color: var(--main-text);
-  font-size: 2.5rem;
+  font-size: 1.7rem;
   transform: rotate(67deg);
 }
 
 .section_wind-parameter {
-  font-size: 1.2rem;
-  display: inline-block;
+  font-size: 1.5rem;
+  display: inline;
   white-space: nowrap;
   padding-left: 5%;
 }
@@ -581,7 +581,7 @@ input[type='text']:focus {
 }
 
 .main-section_first-info_second-content_temperature {
-  font-size: 5rem;
+  font-size: 4.2rem;
   font-weight: 500;
   color: var(--main-text);
 }
