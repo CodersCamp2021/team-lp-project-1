@@ -29,14 +29,15 @@ const navigateTo = (action, params) => {
 const render = async () => {
   const usp = new URLSearchParams(window.location.search);
 
-  if (AppLocalStorage.get('lastWeather')) {
-    DomManipulation.setLastWeather(AppLocalStorage.get('lastWeather'));
-    lastWeather.setDisplay('flex')
-  } else {
-    lastWeather.setDisplay('none')
-  }
-
   if (usp.get('action') !== 'search') {
+    //display last location weather info (if it exists)
+    if (AppLocalStorage.get('lastWeather')) {
+      DomManipulation.setLastWeather(AppLocalStorage.get('lastWeather'));
+      lastWeather.setDisplay('flex');
+    } else {
+      lastWeather.setDisplay('none');
+    }
+
     homeView.setDisplay('flex');
     searchView.setDisplay('none');
   } else {
