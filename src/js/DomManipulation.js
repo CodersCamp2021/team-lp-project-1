@@ -220,6 +220,10 @@ export default class DomManipulation {
     homeWindSpeed.setText(
       `${parseInt(data.consolidated_weather[0].wind_speed, 10)} mph`,
     );
+
+    const lastUpdateInfo = new DomManipulation('home-update-time');
+    const createdTime = data.consolidated_weather[0].created;
+    DomManipulation.setUpdatedTime(lastUpdateInfo, createdTime)
   };
 
   /**
