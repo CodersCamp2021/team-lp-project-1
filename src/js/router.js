@@ -46,9 +46,6 @@ const render = async () => {
     homeView.setDisplay('flex');
     searchView.setDisplay('none');
   } else {
-    const weatherData = await weather.getWeatherData(usp.get('id'));
-    AppLocalStorage.set('lastWeather', weatherData);
-    const warsawData = await weather.getWeatherData(523920);
     homeView.setDisplay('none');
     searchView.setDisplay('none');
     let weatherData;
@@ -60,6 +57,8 @@ const render = async () => {
       weatherData = await weather.getWeatherData(id);
       SessionStorage.set(id, weatherData);
     }
+
+    AppLocalStorage.set('lastWeather', weatherData);
 
     if (SessionStorage.get(523920)) {
       warsawData = SessionStorage.get(523920);
