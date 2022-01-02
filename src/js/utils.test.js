@@ -1,4 +1,7 @@
-import { verifyInput } from './utils.js';
+/**
+ * @jest-environment jsdom
+ */
+import { updateSearchFormDisplay, verifyInput, INPUT_STATES } from './utils.js';
 
 // verifyInput
 const mockList = [
@@ -42,7 +45,7 @@ const invalidInput = [
 });
 
 validInput.forEach((inputObj) => {
-  it(`verifyInput: "${inputObj.value}" should pass verification`, () => {
+  test(`verifyInput: "${inputObj.value}" should pass verification`, () => {
     expect(verifyInput(mockList, inputObj)).toBe(true);
 
     const desiredInputObjSchema = {
@@ -57,7 +60,51 @@ validInput.forEach((inputObj) => {
 });
 
 invalidInput.forEach((inputObj) => {
-  it(`verifyInput: "${inputObj}" should not pass verification`, () => {
+  test(`verifyInput: "${inputObj}" should not pass verification`, () => {
     expect(verifyInput(mockList, inputObj)).toBe(false);
+  });
+});
+
+// updateSearchFormDisplay
+test('updateSearchFormDisplay should set correct statuses for icons', () => {
+  const mockSearchBar = document.createElement('div');
+  const iconContainer = document.createElement('div');
+  iconContainer.classList.add('search-icon-container');
+  mockSearchBar.append(iconContainer);
+  document.body.append(mockSearchBar);
+
+  const searchIcon = document.createElement('img');
+  const spinnerIcon = document.createElement('img');
+  const exclamationIcon = document.createElement('img');
+  const checkIcon = document.createElement('img');
+  const redoIcon = document.createElement('img');
+
+  searchIcon.classList.add('fa-search');
+  spinnerIcon.classList.add('lds-spinner');
+  exclamationIcon.classList.add('fa-exclamation');
+  checkIcon.classList.add('fa-check');
+  redoIcon.classList.add('fa-redo');
+
+  iconContainer.append(
+    searchIcon,
+    spinnerIcon,
+    exclamationIcon,
+    checkIcon,
+    redoIcon,
+  );
+  Array.from(iconContainer.children).forEach((icon) =>
+    icon.classList.add('active'),
+  );
+  Array.from(iconContainer.children).forEach((icon) =>
+    expect(icon.classList.contains('active')).toBe(true),
+  );
+  updateSearchFormDisplay(mockSearchBar, 'wrong status');
+  Array.from(iconContainer.children).forEach((icon) =>
+    expect(icon.classList.contains('active')).toBe(false),
+  );
+
+  Object.values(INPUT_STATES).forEach((status) => {
+    updateSearchFormDisplay(mockSearchBar, status);
+    expect(mockSearchBar.querySelectorAll('.active').length).toBe(1);
   });
 });
