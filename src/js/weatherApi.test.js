@@ -140,14 +140,14 @@ describe('Class tests', () => {
 
     fetch.mockImplementationOnce(() => {
       return Promise.resolve({
-        json: () => Promise.resolve(mockData),
+        json: () => Promise.resolve(mockWeatherData),
         ok: true,
       });
     });
 
     const weatherData = await weather.getWeatherData(id);
     expect(fetch).toHaveBeenCalledTimes(1);
-    expect(weatherData).toEqual(mockData);
+    expect(weatherData).toEqual(mockWeatherData);
     expect(fetch).toHaveBeenCalledWith(
       `https://metaweather-api.glitch.me//api/location/${id}`,
     );
