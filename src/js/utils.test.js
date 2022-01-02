@@ -1,7 +1,12 @@
 /**
  * @jest-environment jsdom
  */
-import { updateSearchFormDisplay, verifyInput, INPUT_STATES } from './utils.js';
+import {
+  updateSearchFormDisplay,
+  verifyInput,
+  INPUT_STATES,
+  clearInputBtn,
+} from './utils.js';
 
 // verifyInput
 const mockList = [
@@ -65,8 +70,7 @@ invalidInput.forEach((inputObj) => {
   });
 });
 
-// updateSearchFormDisplay
-test('updateSearchFormDisplay should set correct statuses for icons', () => {
+describe('', () => {
   const mockSearchBar = document.createElement('div');
   const iconContainer = document.createElement('div');
   iconContainer.classList.add('search-icon-container');
@@ -92,19 +96,48 @@ test('updateSearchFormDisplay should set correct statuses for icons', () => {
     checkIcon,
     redoIcon,
   );
-  Array.from(iconContainer.children).forEach((icon) =>
-    icon.classList.add('active'),
-  );
-  Array.from(iconContainer.children).forEach((icon) =>
-    expect(icon.classList.contains('active')).toBe(true),
-  );
-  updateSearchFormDisplay(mockSearchBar, 'wrong status');
-  Array.from(iconContainer.children).forEach((icon) =>
-    expect(icon.classList.contains('active')).toBe(false),
-  );
 
-  Object.values(INPUT_STATES).forEach((status) => {
-    updateSearchFormDisplay(mockSearchBar, status);
-    expect(mockSearchBar.querySelectorAll('.active').length).toBe(1);
+  afterAll(() => mockSearchBar.remove());
+
+  // updateSearchFormDisplay
+  test('updateSearchFormDisplay should set correct statuses for icons', () => {
+    Array.from(iconContainer.children).forEach((icon) =>
+      icon.classList.add('active'),
+    );
+    Array.from(iconContainer.children).forEach((icon) =>
+      expect(icon.classList.contains('active')).toBe(true),
+    );
+    updateSearchFormDisplay(mockSearchBar, 'wrong status');
+    Array.from(iconContainer.children).forEach((icon) =>
+      expect(icon.classList.contains('active')).toBe(false),
+    );
+
+    Object.values(INPUT_STATES).forEach((status) => {
+      updateSearchFormDisplay(mockSearchBar, status);
+      expect(mockSearchBar.querySelectorAll('.active').length).toBe(1);
+    });
+  });
+
+  // clearInputBtn
+  test('clearInputBtn should clear the input value and search info paragraph text', () => {
+    const mockForm = document.createElement('form');
+    const mockInput = document.createElement('input');
+    const mockSearchCont = document.createElement('div');
+    const mockPara = document.createElement('p');
+    mockSearchCont.classList.add('search-info-container');
+
+    mockForm.append(mockSearchCont, mockInput, iconContainer);
+    mockSearchCont.append(mockPara);
+
+    document.body.append(mockForm);
+
+    const mockEvent = {
+      target: mockSearchCont,
+    };
+
+    clearInputBtn(mockEvent);
+    expect(mockInput.value).toBe('');
+    expect(mockPara.innerText).toBe('');
+    mockForm.remove();
   });
 });
