@@ -79,7 +79,7 @@ describe('Class tests', () => {
   // getHistoricalWeatherData
   test('getHistoricalWeatherData should return weather data for given date, id', async () => {
     let id = 523920;
-    let date = '2020/12/24';
+    let pastDate = '2020/12/24';
 
     fetch.mockImplementationOnce(() => {
       return Promise.resolve({
@@ -88,11 +88,17 @@ describe('Class tests', () => {
       });
     });
 
-    const historicalData = await weather.getHistoricalWeatherData(id, date);
+    const historicalData = await weather.getHistoricalWeatherData(id, pastDate);
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(historicalData).toEqual(mockHistoricalWeatherData);
+    expect(historicalData.length).toBe(3);
+    expect(
+      historicalData.find(
+        (day) => day.applicable_date === pastDate.replace(/\//g, '-'),
+      ),
+    ).toBeTruthy();
     expect(fetch).toHaveBeenCalledWith(
-      `https://metaweather-api.glitch.me//api/location/${id}/${date}`,
+      `https://metaweather-api.glitch.me//api/location/${id}/${pastDate}`,
     );
   });
 });
