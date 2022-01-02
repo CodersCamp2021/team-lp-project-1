@@ -50,7 +50,7 @@ test('fetchData handles exception when error is thrown', async () => {
 
 describe('Class tests', () => {
   const weather = new WeatherAPI();
-  const mockData = {
+  const mockWeatherData = {
     consolidated_weather: [
       {
         weather_state_name: 'Light Rain',
@@ -116,6 +116,8 @@ describe('Class tests', () => {
     time: '2021-12-30T06:33:06.199300-05:00',
     title: 'New York',
   };
+
+  // getQueryLocations
   test('getQueryLocations should return basic location data given city name', async () => {
     let city = 'Warsaw';
 
@@ -131,6 +133,8 @@ describe('Class tests', () => {
       `https://metaweather-api.glitch.me//api/location/search/?query=${city}`,
     );
   });
+
+  // getWeatherData
   test('getWeatherData should return weather data given correct id', async () => {
     let id = 523920;
 
