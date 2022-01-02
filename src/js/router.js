@@ -7,6 +7,7 @@ const weather = new WeatherAPI();
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
 const lastWeather = new DomManipulation('last-weather-info');
+const pageLoadingSpinner = new DomManipulation('page-loadingSpinner');
 
 /**
  * navigateTo creates proper query string based on the passed data,
@@ -46,8 +47,8 @@ const render = async () => {
     homeView.setDisplay('flex');
     searchView.setDisplay('none');
   } else {
-    homeView.setDisplay('none');
-    searchView.setDisplay('none');
+    pageLoadingSpinner.setDisplay('flex');
+    
     let weatherData;
     let warsawData;
 
@@ -66,8 +67,11 @@ const render = async () => {
       warsawData = await weather.getWeatherData(523920);
       SessionStorage.set(523920, warsawData);
     }
+
     DomManipulation.setWeatherInfo(weatherData);
     DomManipulation.setWarsawWeather(warsawData);
+    
+    pageLoadingSpinner.setDisplay('none');
     homeView.setDisplay('none');
     searchView.setDisplay('flex');
   }

@@ -16,6 +16,30 @@ body {
   background-color: var(--main-bg);
 }
 
+.page-loadingSpinner-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* display: flex;  */
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+
+  display: none; /* <---- SWITCH HERE TO FLEX */
+}
+
+.page-loadingSpinner-container .lds-spinner {
+  display: block;
+  width: 72px;
+  height: 72px;
+  transform: scale(2);
+}
+
+.page-loadingSpinner-container .lds-spinner div:after {
+  background: #fff;
+}
+
 /* HOME VIEW */
 .home-view {
   display: flex; /* <---- SWITCH HERE */
