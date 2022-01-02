@@ -116,6 +116,59 @@ describe('Class tests', () => {
     time: '2021-12-30T06:33:06.199300-05:00',
     title: 'New York',
   };
+  const historicalWeatherData = [
+    {
+      id: 6747805688266752,
+      weather_state_name: 'Light Rain',
+      weather_state_abbr: 'lr',
+      wind_direction_compass: 'SW',
+      created: '2020-12-24T22:25:58.372754Z',
+      applicable_date: '2020-12-24',
+      min_temp: 2.24,
+      max_temp: 9.195,
+      the_temp: 9.094999999999999,
+      wind_speed: 8.22383100132559,
+      wind_direction: 232.1535827887323,
+      air_pressure: 1003.0,
+      humidity: 89,
+      visibility: 7.411404895410801,
+      predictability: 75,
+    },
+    {
+      id: 5884000875839488,
+      weather_state_name: 'Light Rain',
+      weather_state_abbr: 'lr',
+      wind_direction_compass: 'SW',
+      created: '2020-12-24T19:25:58.400768Z',
+      applicable_date: '2020-12-24',
+      min_temp: 2.24,
+      max_temp: 9.08,
+      the_temp: 9.094999999999999,
+      wind_speed: 8.22383100132559,
+      wind_direction: 232.1535827887323,
+      air_pressure: 1003.0,
+      humidity: 89,
+      visibility: 7.411404895410801,
+      predictability: 75,
+    },
+    {
+      id: 5281935447293952,
+      weather_state_name: 'Light Rain',
+      weather_state_abbr: 'lr',
+      wind_direction_compass: 'SW',
+      created: '2020-12-24T16:25:58.476111Z',
+      applicable_date: '2020-12-24',
+      min_temp: 2.24,
+      max_temp: 9.165,
+      the_temp: 9.094999999999999,
+      wind_speed: 8.203831001325593,
+      wind_direction: 232.4843347357284,
+      air_pressure: 1003.0,
+      humidity: 89,
+      visibility: 7.411404895410801,
+      predictability: 75,
+    },
+  ];
 
   // getQueryLocations
   test('getQueryLocations should return basic location data given city name', async () => {
@@ -150,6 +203,26 @@ describe('Class tests', () => {
     expect(weatherData).toEqual(mockWeatherData);
     expect(fetch).toHaveBeenCalledWith(
       `https://metaweather-api.glitch.me//api/location/${id}`,
+    );
+  });
+
+  // getHistoricalWeatherData
+  test('getHistoricalWeatherData should return weather data for given date, id', async () => {
+    let id = 523920;
+    let date = '2020/12/24';
+
+    fetch.mockImplementationOnce(() => {
+      return Promise.resolve({
+        json: () => Promise.resolve(),
+        ok: true,
+      });
+    });
+
+    const weatherData = await weather.getWeatherData(id);
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(weatherData).toEqual();
+    expect(fetch).toHaveBeenCalledWith(
+      `https://metaweather-api.glitch.me//api/location/${id}/${date}`,
     );
   });
 });
