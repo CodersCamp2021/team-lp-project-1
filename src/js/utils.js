@@ -4,7 +4,7 @@
 
 import WeatherAPI from './weatherApi';
 import DomManipulation from './DomManipulation';
-
+import { navigateTo } from './router';
 /**
  * variable for easier manipulation of inputStatus
  */
@@ -171,7 +171,11 @@ export const clearInputBtn = (e) => {
  * function for reseting both forms
  * needs to be invoked whenever the app view changes
  */
-export const resetForms = () => {
+export const resetForms = (e) => {
+  const form = e.target.closest('form');
+  const searchInfo = form.querySelector('.search-info-container p');
+  searchInfo.innerText = '';
+  
   const homeSearchInput = new DomManipulation('home-input');
   const dailySearchInput = new DomManipulation('daily-input');
 
@@ -184,4 +188,5 @@ export const resetForms = () => {
   inputStatus = INPUT_STATES.standby;
   updateSearchFormDisplay(homeSearchBar, inputStatus);
   updateSearchFormDisplay(dailySearchBar, inputStatus);
+  navigateTo('', {});
 };
