@@ -70,10 +70,7 @@ clearBtns.forEach((btn) => {
  * event listeners for reloading the page after clicking the proper icon
  */
 reloadBtns.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    resetForms();
-    navigateTo('', {});
-  });
+  btn.addEventListener('click', resetForms);
 });
 
 // Renders adequate view while traversing history
