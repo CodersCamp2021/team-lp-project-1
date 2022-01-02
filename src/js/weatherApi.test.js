@@ -116,7 +116,7 @@ describe('Class tests', () => {
     time: '2021-12-30T06:33:06.199300-05:00',
     title: 'New York',
   };
-  const historicalWeatherData = [
+  const mockHistoricalWeatherData = [
     {
       id: 6747805688266752,
       weather_state_name: 'Light Rain',
@@ -213,14 +213,14 @@ describe('Class tests', () => {
 
     fetch.mockImplementationOnce(() => {
       return Promise.resolve({
-        json: () => Promise.resolve(),
+        json: () => Promise.resolve(mockHistoricalWeatherData),
         ok: true,
       });
     });
 
-    const weatherData = await weather.getWeatherData(id);
+    const historicalData = await weather.getHistoricalWeatherData(id, date);
     expect(fetch).toHaveBeenCalledTimes(1);
-    expect(weatherData).toEqual();
+    expect(historicalData).toEqual(mockHistoricalWeatherData);
     expect(fetch).toHaveBeenCalledWith(
       `https://metaweather-api.glitch.me//api/location/${id}/${date}`,
     );
