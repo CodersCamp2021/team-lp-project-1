@@ -1,9 +1,12 @@
 import DomManipulation from './DomManipulation';
 import WeatherAPI from './weatherApi';
+import AppLocalStorage from './appLocalStorage';
+import SessionStorage from './sessionStorage';
 
 const weather = new WeatherAPI();
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
+const lastWeather = new DomManipulation('last-weather-info');
 const pageLoadingSpinner = new DomManipulation('page-loadingSpinner');
 
 /**
@@ -13,9 +16,12 @@ const pageLoadingSpinner = new DomManipulation('page-loadingSpinner');
  * @param {object} params
  */
 const navigateTo = (action, params) => {
-  const usp = new URLSearchParams({ action: action, ...params });
-  history.pushState(null, null, `?${usp.toString()}`);
-
+  if (action !== 'search') {
+    history.replaceState(null, null, '/');
+  } else {
+    const usp = new URLSearchParams({ action: action, ...params });
+    history.pushState(null, null, `?${usp.toString()}`);
+  }
   render();
 };
 
@@ -27,17 +33,45 @@ const navigateTo = (action, params) => {
  */
 const render = async () => {
   const usp = new URLSearchParams(window.location.search);
+  const id = usp.get('id');
 
   if (usp.get('action') !== 'search') {
+    //display last location weather info (if it exists)
+    if (AppLocalStorage.get('lastWeather')) {
+      DomManipulation.setLastWeather(AppLocalStorage.get('lastWeather'));
+      lastWeather.setDisplay('flex');
+    } else {
+      lastWeather.setDisplay('none');
+    }
+
     homeView.setDisplay('flex');
     searchView.setDisplay('none');
   } else {
     pageLoadingSpinner.setDisplay('flex');
-    const weatherData = await weather.getWeatherData(usp.get('id'));
-    const warsawData = await weather.getWeatherData(523920);
-    pageLoadingSpinner.setDisplay('none');
+    
+    let weatherData;
+    let warsawData;
+
+    if (SessionStorage.get(id)) {
+      weatherData = SessionStorage.get(id);
+    } else {
+      weatherData = await weather.getWeatherData(id);
+      SessionStorage.set(id, weatherData);
+    }
+
+    AppLocalStorage.set('lastWeather', weatherData);
+
+    if (SessionStorage.get(523920)) {
+      warsawData = SessionStorage.get(523920);
+    } else {
+      warsawData = await weather.getWeatherData(523920);
+      SessionStorage.set(523920, warsawData);
+    }
+
     DomManipulation.setWeatherInfo(weatherData);
     DomManipulation.setWarsawWeather(warsawData);
+    
+    pageLoadingSpinner.setDisplay('none');
     homeView.setDisplay('none');
     searchView.setDisplay('flex');
   }

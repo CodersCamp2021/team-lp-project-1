@@ -174,22 +174,14 @@ export const clearInputBtn = (e) => {
 export const resetForms = () => {
   const homeSearchInput = new DomManipulation('home-input');
   const dailySearchInput = new DomManipulation('daily-input');
+
+  const homeSearchBar = document.querySelector('.home-search-bar');
+  const dailySearchBar = document.querySelector('.daily-search-bar');
+
   homeSearchInput.reset();
   dailySearchInput.reset();
 
   inputStatus = INPUT_STATES.standby;
   updateSearchFormDisplay(homeSearchBar, inputStatus);
   updateSearchFormDisplay(dailySearchBar, inputStatus);
-};
-
-// screen switch
-export const screenSwitch = async (locationID) => {
-  const homeView = new DomManipulation('home-view');
-  const searchView = new DomManipulation('search-view');
-
-  weather.getWeatherData(locationID).then((weatherData) => {
-    console.log(weatherData);
-    homeView.toggleDisplay();
-    searchView.toggleDisplay();
-  });
 };
