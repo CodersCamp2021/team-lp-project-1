@@ -1,10 +1,12 @@
 import DomManipulation from './DomManipulation';
 import WeatherAPI from './weatherApi';
+import AppLocalStorage from './appLocalStorage';
 import SessionStorage from './sessionStorage';
 
 const weather = new WeatherAPI();
 const homeView = new DomManipulation('home-view');
 const searchView = new DomManipulation('search-view');
+const lastWeather = new DomManipulation('last-weather-info');
 
 /**
  * navigateTo creates proper query string based on the passed data,
@@ -33,9 +35,20 @@ const render = async () => {
   const id = usp.get('id');
 
   if (usp.get('action') !== 'search') {
+    //display last location weather info (if it exists)
+    if (AppLocalStorage.get('lastWeather')) {
+      DomManipulation.setLastWeather(AppLocalStorage.get('lastWeather'));
+      lastWeather.setDisplay('flex');
+    } else {
+      lastWeather.setDisplay('none');
+    }
+
     homeView.setDisplay('flex');
     searchView.setDisplay('none');
   } else {
+    const weatherData = await weather.getWeatherData(usp.get('id'));
+    AppLocalStorage.set('lastWeather', weatherData);
+    const warsawData = await weather.getWeatherData(523920);
     homeView.setDisplay('none');
     searchView.setDisplay('none');
     let weatherData;
@@ -54,7 +67,6 @@ const render = async () => {
       warsawData = await weather.getWeatherData(523920);
       SessionStorage.set(523920, warsawData);
     }
-
     DomManipulation.setWeatherInfo(weatherData);
     DomManipulation.setWarsawWeather(warsawData);
     homeView.setDisplay('none');

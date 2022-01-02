@@ -255,6 +255,10 @@ body {
   padding: 3%;
 }
 
+.home-info-update {
+  padding-left: 2%;
+}
+
 .home-vertical-separator {
   background-color: var(--separator);
   width: 2px;

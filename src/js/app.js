@@ -13,7 +13,6 @@ import {
 import { navigateTo, render } from './router';
 
 const weather = new WeatherAPI();
-const localStorage = new AppLocalStorage();
 
 const homeSearchBar = document.querySelector('.home-search-bar');
 const dailySearchBar = document.querySelector('.daily-search-bar');

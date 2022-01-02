@@ -192,6 +192,41 @@ export default class DomManipulation {
   }
 
   /**
+   * Method puts data from JSON to HTML for HomeView Data Info.
+   * @param {JSON} data
+   */
+  static setLastWeather(data){
+    const homeCityName = new DomManipulation('home-city');
+    homeCityName.setText(data.title);
+    const homeCurrentTime = new DomManipulation('home-date');
+    homeCurrentTime.setText(
+      `${homeCurrentTime.setDay(
+        0,
+      )} ${new Date().getDate()} ${homeCurrentTime.setMonth()}`,
+    );
+    const homeTemp = new DomManipulation('home-temp');
+    homeTemp.setText(
+      `${parseInt(data.consolidated_weather[0].the_temp, 10)}°C`,
+    );
+    const homeTempMin = new DomManipulation('home-min');
+    homeTempMin.setText(
+      `${parseInt(data.consolidated_weather[0].min_temp, 10)}°C`,
+    );
+    const homeTempMax = new DomManipulation('home-max');
+    homeTempMax.setText(
+      `${parseInt(data.consolidated_weather[0].max_temp, 10)}°C`,
+    );
+    const homeWindSpeed = new DomManipulation('home-speed');
+    homeWindSpeed.setText(
+      `${parseInt(data.consolidated_weather[0].wind_speed, 10)} mph`,
+    );
+
+    const lastUpdateInfo = new DomManipulation('home-update-time');
+    const createdTime = data.consolidated_weather[0].created;
+    DomManipulation.setUpdatedTime(lastUpdateInfo, createdTime)
+  };
+
+  /**
    * Sets display property of element passed by id in constructor
    * @param {String} display
    */
