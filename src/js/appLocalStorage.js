@@ -5,11 +5,11 @@ export default class AppLocalStorage {
   * @param {String} key is a key of the value we want to add
   * @param {String} value is a value we want to add
   */
-  set(key, value) {
+  static set(key, value) {
     try {
-      localStorage.setItem(key, value);
+      localStorage.setItem(key, JSON.stringify(value));
     } catch (e) {
-      //
+      console.log(e);
     }
   }
 
@@ -19,11 +19,11 @@ export default class AppLocalStorage {
   * @param {String} key is a key of the value we want to get
   * @return {String} the current value associated with the given key, or null if the given key does not exist.
   */
-  get(key) {
+  static get(key) {
     try {
-      return localStorage.getItem(key);
+      return JSON.parse(localStorage.getItem(key))
     } catch (e) {
-      //
+      console.log(e);
     }
     return null;
   }
@@ -33,11 +33,11 @@ export default class AppLocalStorage {
   *  
   * @param {String} key is a key of the value we want to remove
   */
-  remove(key) {
+  static remove(key) {
     try {
       localStorage.removeItem(key);
     } catch (e) {
-      //
+      console.log(e);
     }
   }
 }
