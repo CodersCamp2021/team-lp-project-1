@@ -18,7 +18,6 @@ beforeEach(() => {
 });
 
 // fetchData
-
 test('fetchData returns basic location data', async () => {
   const endpoint = '/api/location/search/?query=Warsaw';
   const locationData = await fetchData(endpoint);
@@ -42,6 +41,7 @@ test('fetchData handles exception when error is thrown', async () => {
   );
 });
 
+// Class methods tests
 describe('Class tests', () => {
   const weather = new WeatherAPI();
 
