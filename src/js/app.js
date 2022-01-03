@@ -50,13 +50,13 @@ function handleSubmit(e) {
 /**
  * event listeners for the search form on the home page
  */
-homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
+homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1000));
 homeSearchBar.addEventListener('submit', handleSubmit);
 
 /**
  * event listeners for the search form on the datails page
  */
-dailySearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
+dailySearchInput.elem.addEventListener('input', debounce(handleInput, 1000));
 dailySearchBar.addEventListener('submit', handleSubmit);
 
 /**
