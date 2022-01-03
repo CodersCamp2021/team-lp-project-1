@@ -3,12 +3,6 @@ import WeatherAPI from './weatherApi';
 import AppLocalStorage from './appLocalStorage';
 import SessionStorage from './sessionStorage';
 
-const weather = new WeatherAPI();
-const homeView = new DomManipulation('home-view');
-const searchView = new DomManipulation('search-view');
-const lastWeather = new DomManipulation('last-weather-info');
-const pageLoadingSpinner = new DomManipulation('page-loadingSpinner');
-
 /**
  * navigateTo creates proper query string based on the passed data,
  * uses historyAPI to set appropriate URL for the user and calls render()
@@ -32,6 +26,12 @@ const navigateTo = (action, params) => {
  * - homeView for all the other cases
  */
 const render = async () => {
+  const weather = new WeatherAPI();
+  const homeView = new DomManipulation('home-view');
+  const searchView = new DomManipulation('search-view');
+  const lastWeather = new DomManipulation('last-weather-info');
+  const pageLoadingSpinner = new DomManipulation('page-loadingSpinner');
+
   const usp = new URLSearchParams(window.location.search);
   const id = usp.get('id');
 
@@ -48,7 +48,7 @@ const render = async () => {
     searchView.setDisplay('none');
   } else {
     pageLoadingSpinner.setDisplay('flex');
-    
+
     let weatherData;
     let warsawData;
 
@@ -70,7 +70,7 @@ const render = async () => {
 
     DomManipulation.setWeatherInfo(weatherData);
     DomManipulation.setWarsawWeather(warsawData);
-    
+
     pageLoadingSpinner.setDisplay('none');
     homeView.setDisplay('none');
     searchView.setDisplay('flex');
