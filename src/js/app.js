@@ -41,6 +41,8 @@ function handleSubmit(e) {
   if (inputStatus !== INPUT_STATES.ready) return;
 
   let input = this.getElementsByTagName('input')[0];
+  if (!input.dataset.currentWoeid && !input.dataset.currentCity) return;
+
   navigateTo('search', {
     id: input.dataset.currentWoeid,
     title: input.dataset.currentCity,
