@@ -249,38 +249,38 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
-  margin-left: 2%;
+  margin-left: 2.5%;
 }
 
 .home-city-date {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .home-info-city {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--main-text);
-  padding-left: 2%;
+  padding-top: 2%;
+  white-space: nowrap;
 }
 
 .home-date {
   display: inline-block;
   white-space: nowrap;
-  padding-left: 3%;
   padding-bottom: 1.7%;
 }
 
 .home-info-temp {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 600;
   color: var(--main-text);
-  padding: 3%;
+  padding: 1% 0;
 }
 
 .home-info-update {
-  padding-left: 2%;
 }
 
 .home-vertical-separator {
@@ -294,6 +294,15 @@ body {
   flex-direction: row;
   width: 49%;
   justify-content: space-around;
+}
+
+.home-high-box,
+.home-low-box,
+.home-wind-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .margin0 {
@@ -469,9 +478,8 @@ input[type='text']:focus {
 
 .section_wind-parameter {
   font-size: 1.2rem;
-  display: inline-block;
   white-space: nowrap;
-  padding-left: 5%;
+  padding-left: 10%;
 }
 
 .daily-section_footer {
@@ -573,7 +581,7 @@ input[type='text']:focus {
 }
 
 .main-section_first-info {
-  height: 90%;
+  height: 85%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -626,7 +634,7 @@ input[type='text']:focus {
 }
 
 .main-section_first-info_second-content_temperature {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 500;
   color: var(--main-text);
 }
