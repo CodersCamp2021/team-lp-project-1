@@ -9,6 +9,7 @@ import {
   updateSearchFormDisplay,
   clearInputBtn,
   resetForms,
+  resetInputStatus,
 } from './utils';
 import { navigateTo, render } from './router';
 
@@ -54,13 +55,17 @@ function handleSubmit(e) {
 
 /**
  * event listeners for the search form on the home page
+ * first event listener resets the status BEFORE handleInput works
  */
+homeSearchInput.elem.addEventListener('input', resetInputStatus);
 homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1000));
 homeSearchBar.addEventListener('submit', handleSubmit);
 
 /**
  * event listeners for the search form on the datails page
+ * first event listener resets the status BEFORE handleInput works
  */
+dailySearchInput.elem.addEventListener('input', resetInputStatus);
 dailySearchInput.elem.addEventListener('input', debounce(handleInput, 1000));
 dailySearchBar.addEventListener('submit', handleSubmit);
 
