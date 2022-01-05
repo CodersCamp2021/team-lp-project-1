@@ -6,7 +6,7 @@ const URL_BASE = 'https://metaweather-api.glitch.me/';
  * @param {String} urlEndpoint is a expansion of the underlying query "URL_BASE"
  * @return {JSON} json object with info
  */
-const fetchData = async (urlEndpoint) => {
+export const fetchData = async (urlEndpoint) => {
   try {
     const response = await fetch(`${URL_BASE}${urlEndpoint}`);
 
