@@ -20,7 +20,9 @@ const navigateTo = (action, params) => {
     history.replaceState(null, null, '/');
   } else {
     const usp = new URLSearchParams({ action: action, ...params });
-    history.pushState(null, null, `?${usp.toString()}`);
+    if (params.id !== history.state?.woeid) {
+      history.pushState({ woeid: params.id }, null, `?${usp.toString()}`);
+    }
   }
   render();
 };
