@@ -55,27 +55,47 @@ export default class DomManipulation {
   }
 
   /**
-   * Method returns day name. 
-   * @param {int} offset 
+   * Method returns day name.
+   * @param {int} offset
    * @returns One of days Name as string
    */
-  setDay(offset){
+  setDay(offset) {
     const today = new Date().getDay();
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    let dayName = days[(today + offset) % 7]
-    return dayName
+    const days = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
+    let dayName = days[(today + offset) % 7];
+    return dayName;
   }
 
   /**
-   * Method returns month name. 
+   * Method returns month name.
    * @returns One of month Name as string
    */
-  setMonth(){
+  setMonth() {
     const today = new Date().getMonth();
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 
-    'September', 'October', 'November', 'December'];
-    let monthName = months[(today) % 12]
-    return monthName
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    let monthName = months[today % 12];
+    return monthName;
   }
 
   /**
@@ -109,7 +129,7 @@ export default class DomManipulation {
     dailyArrow.setWindIcon(data.consolidated_weather[0].wind_direction);
     const dailyWindSpeed = new DomManipulation('daily-wind-speed');
     dailyWindSpeed.setText(
-      `${parseInt(data.consolidated_weather[0].wind_speed, 10)}\n mph`,
+      `${parseInt(data.consolidated_weather[0].wind_speed, 10)} mph`,
     );
     const lastUpdate = new DomManipulation('daily-update');
     DomManipulation.setUpdatedTime(
@@ -131,7 +151,7 @@ export default class DomManipulation {
       );
       dailyState.setText(data.consolidated_weather[day].weather_state_name);
       dailyWindSpeed.setText(
-        `${parseInt(data.consolidated_weather[day].wind_speed, 10)}\n mph`,
+        `${parseInt(data.consolidated_weather[day].wind_speed, 10)} mph`,
       );
       dailyArrow.setWindIcon(data.consolidated_weather[day].wind_direction);
       dayName.setText(dayName.setDay(day));
@@ -177,6 +197,8 @@ export default class DomManipulation {
     localTemp.setText(
       `${parseInt(data.consolidated_weather[0].the_temp, 10)}°C`,
     );
+    const localState = new DomManipulation('local-state');
+    localState.setText(`${data.consolidated_weather[0].weather_state_name}`);
     const localTempMin = new DomManipulation('local-low');
     localTempMin.setText(
       `${parseInt(data.consolidated_weather[0].min_temp, 10)}°C`,
@@ -195,7 +217,7 @@ export default class DomManipulation {
    * Method puts data from JSON to HTML for HomeView Data Info.
    * @param {JSON} data
    */
-  static setLastWeather(data){
+  static setLastWeather(data) {
     const homeCityName = new DomManipulation('home-city');
     homeCityName.setText(data.title);
     const homeCurrentTime = new DomManipulation('home-date');
@@ -223,8 +245,8 @@ export default class DomManipulation {
 
     const lastUpdateInfo = new DomManipulation('home-update-time');
     const createdTime = data.consolidated_weather[0].created;
-    DomManipulation.setUpdatedTime(lastUpdateInfo, createdTime)
-  };
+    DomManipulation.setUpdatedTime(lastUpdateInfo, createdTime);
+  }
 
   /**
    * Sets display property of element passed by id in constructor
