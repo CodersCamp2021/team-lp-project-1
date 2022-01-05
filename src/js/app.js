@@ -41,12 +41,15 @@ function handleSubmit(e) {
   if (inputStatus !== INPUT_STATES.ready) return;
 
   let input = this.getElementsByTagName('input')[0];
-  if (!input.dataset.currentWoeid && !input.dataset.currentCity) return;
+  if (!input.dataset.currentWoeid || !input.dataset.currentCity) return;
 
+  input.disabled = true;
   navigateTo('search', {
     id: input.dataset.currentWoeid,
     title: input.dataset.currentCity,
   });
+  input.disabled = false;
+  setTimeout(() => input.focus(), 750);
 }
 
 /**
