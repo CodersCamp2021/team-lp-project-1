@@ -41,22 +41,27 @@ function handleSubmit(e) {
   if (inputStatus !== INPUT_STATES.ready) return;
 
   let input = this.getElementsByTagName('input')[0];
+  if (!input.dataset.currentWoeid || !input.dataset.currentCity) return;
+
+  input.disabled = true;
   navigateTo('search', {
     id: input.dataset.currentWoeid,
     title: input.dataset.currentCity,
   });
+  input.disabled = false;
+  setTimeout(() => input.focus(), 750);
 }
 
 /**
  * event listeners for the search form on the home page
  */
-homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
+homeSearchInput.elem.addEventListener('input', debounce(handleInput, 1000));
 homeSearchBar.addEventListener('submit', handleSubmit);
 
 /**
  * event listeners for the search form on the datails page
  */
-dailySearchInput.elem.addEventListener('input', debounce(handleInput, 1500));
+dailySearchInput.elem.addEventListener('input', debounce(handleInput, 1000));
 dailySearchBar.addEventListener('submit', handleSubmit);
 
 /**
@@ -70,10 +75,7 @@ clearBtns.forEach((btn) => {
  * event listeners for reloading the page after clicking the proper icon
  */
 reloadBtns.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    resetForms();
-    navigateTo('', {});
-  });
+  btn.addEventListener('click', resetForms);
 });
 
 // Renders adequate view while traversing history

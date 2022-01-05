@@ -14,7 +14,9 @@ const navigateTo = (action, params) => {
     history.replaceState(null, null, '/');
   } else {
     const usp = new URLSearchParams({ action: action, ...params });
-    history.pushState(null, null, `?${usp.toString()}`);
+    if (params.id !== history.state?.woeid) {
+      history.pushState({ woeid: params.id }, null, `?${usp.toString()}`);
+    }
   }
   render();
 };
@@ -68,12 +70,14 @@ const render = async () => {
       SessionStorage.set(523920, warsawData);
     }
 
-    DomManipulation.setWeatherInfo(weatherData);
-    DomManipulation.setWarsawWeather(warsawData);
 
-    pageLoadingSpinner.setDisplay('none');
-    homeView.setDisplay('none');
-    searchView.setDisplay('flex');
+    setTimeout(() => {
+      DomManipulation.setWeatherInfo(weatherData);
+      DomManipulation.setWarsawWeather(warsawData);
+      pageLoadingSpinner.setDisplay('none');
+      homeView.setDisplay('none');
+      searchView.setDisplay('flex');
+    }, 500);
   }
 };
 
