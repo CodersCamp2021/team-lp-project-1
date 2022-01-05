@@ -48,7 +48,7 @@ const render = async () => {
     searchView.setDisplay('none');
   } else {
     pageLoadingSpinner.setDisplay('flex');
-    
+
     let weatherData;
     let warsawData;
 
@@ -68,12 +68,13 @@ const render = async () => {
       SessionStorage.set(523920, warsawData);
     }
 
-    DomManipulation.setWeatherInfo(weatherData);
-    DomManipulation.setWarsawWeather(warsawData);
-    
-    pageLoadingSpinner.setDisplay('none');
-    homeView.setDisplay('none');
-    searchView.setDisplay('flex');
+    setTimeout(() => {
+      DomManipulation.setWeatherInfo(weatherData);
+      DomManipulation.setWarsawWeather(warsawData);
+      pageLoadingSpinner.setDisplay('none');
+      homeView.setDisplay('none');
+      searchView.setDisplay('flex');
+    }, 500);
   }
 };
 
