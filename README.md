@@ -43,3 +43,6 @@ new/added-text-search
 update/api-class-filename
 delete/redundant-css-classes
 ```
+
+### Link to App Demo Presentation: 
+https://docs.google.com/presentation/d/11tTtGPO9Rp27q7nEpGWmqWvDtk_FzyBdcNl3KlyL0vU/
