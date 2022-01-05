@@ -103,6 +103,10 @@ export const debounce = (func, wait) => {
 export let inputStatus = INPUT_STATES.standby;
 const weather = new WeatherAPI();
 
+export const resetInputStatus = () => {
+  inputStatus = INPUT_STATES.standby;
+};
+
 /**
  * function validate input phrase, manage search form updating and sends request to API
  *
@@ -175,7 +179,7 @@ export const resetForms = (e) => {
   const form = e.target.closest('form');
   const searchInfo = form.querySelector('.search-info-container p');
   searchInfo.innerText = '';
-  
+
   const homeSearchInput = new DomManipulation('home-input');
   const dailySearchInput = new DomManipulation('daily-input');
 
