@@ -197,6 +197,8 @@ export default class DomManipulation {
     localTemp.setText(
       `${parseInt(data.consolidated_weather[0].the_temp, 10)}°C`,
     );
+    const localState = new DomManipulation('local-state');
+    localState.setText(`${data.consolidated_weather[0].weather_state_name}`);
     const localTempMin = new DomManipulation('local-low');
     localTempMin.setText(
       `${parseInt(data.consolidated_weather[0].min_temp, 10)}°C`,
